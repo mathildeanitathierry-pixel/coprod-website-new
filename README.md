@@ -1,6 +1,6 @@
 # coprod landing page
 
-Single-file landing page for [coprod.co](https://coprod.co) — dark, self-contained, no external requests (fonts and images embedded).
+Single-file landing page for [coprod.co](https://coprod.co) 
 
 ## Structure
 
