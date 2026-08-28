@@ -621,7 +621,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
     <nav class="links">
       <a href="products.html">Products</a>
       <a href="index.html#problem">Systems</a>
-      <a href="index.html#architecture">Architecture</a>
+      <a href="products.html#architecture">Architecture</a>
       <a href="jobs.html">Jobs</a>
     </nav>
     <span class="spacer"></span>
@@ -1091,7 +1091,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <div class="fcol">
         <h4>Platform</h4>
         <ul>
-          <li><a href="index.html#architecture">Architecture &amp; stack</a></li>
+          <li><a href="products.html#architecture">Architecture &amp; stack</a></li>
           <li><a href="index.html#problem">Systems</a></li>
         </ul>
       </div>
@@ -1131,7 +1131,14 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const coarse = matchMedia("(pointer: coarse)").matches;
   root.classList.add("js-motion");
-  if (reduce) root.classList.add("no-veil", "ready");
+  /* the intro veil plays once: not when moving between pages of the site */
+  let skipVeil = reduce;
+  try {
+    if (document.referrer && new URL(document.referrer).origin === location.origin) skipVeil = true;
+    if (sessionStorage.getItem("cp-visited")) skipVeil = true;
+    sessionStorage.setItem("cp-visited", "1");
+  } catch (_) {}
+  if (skipVeil) root.classList.add("no-veil", "ready");
 
   /* ── 1 · eased scrolling (Lenis-style: native scroll, lerped target) ── */
   let target = window.scrollY, current = target, running = false, raf = 0;
@@ -1268,7 +1275,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       root.classList.add("ready");
       document.querySelectorAll(".hero .w, .hero [data-rise]").forEach(el => el.classList.add("in"));
       document.querySelector(".hero-art")?.classList.add("in");
-    }, reduce ? 0 : 1050);
+    }, skipVeil ? 0 : 1050);
 
     /* nav mirrors the section you are in */
     const secs = [...document.querySelectorAll("section[id]")];

@@ -577,7 +577,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
     <nav class="links">
       <a href="products.html">Products</a>
       <a href="index.html#problem">Systems</a>
-      <a href="index.html#architecture">Architecture</a>
+      <a href="#architecture">Architecture</a>
       <a href="jobs.html">Jobs</a>
     </nav>
     <span class="spacer"></span>
@@ -599,6 +599,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
         <a href="#cobattery"><span class="co"><i>co:</i>battery</span></a>
         <a href="#comotion"><span class="co"><i>co:</i>motion</span></a>
         <a href="#cosensor"><span class="co"><i>co:</i>sensor</span></a>
+        <a href="#architecture">Architecture</a>
         <a href="#future">Roadmap</a>
       </nav>
     </div>
@@ -757,6 +758,57 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
           <div class="pillar frame"><h3>On-board fusion</h3><p style="font-size:13px">1 kHz state-of-the-art sensor fusion on the module.</p></div>
           <div class="pillar frame"><h3>Outputs</h3><p style="font-size:13px">Quaternion, linear acceleration, angular velocity, and magnetic field.</p></div>
           <div class="pillar frame"><h3>Footprint</h3><p style="font-size:13px">30 × 50 mm. Built to tuck into tight spaces.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="architecture">
+  <div class="wrap">
+    <div class="head">
+      <span class="lbl"><span class="co" style="font-weight:600"><i>co:</i>system</span></span>
+      <h2>Full stack, <span class="hl">one API.</span></h2>
+    </div>
+
+    <div class="api">
+      <div class="code frame">
+        <div class="bar"><span class="dotc"></span>python</div>
+<pre><span class="k">import</span> <span class="v">cosystem</span> <span class="k">as</span> <span class="v">cs</span>
+
+<span class="c"># Initialize slaves</span>
+<span class="v">cs</span>.<span class="f">scan_network</span>()
+
+<span class="c"># Get slaves</span>
+<span class="v">imu</span> = <span class="v">cs</span>.<span class="f">get_slave</span>(<span class="t">SlaveId</span>.<span class="n">IMU</span>)
+<span class="v">camera_motor</span> = <span class="v">cs</span>.<span class="f">get_slave</span>(<span class="t">SlaveId</span>.<span class="n">CAMERA_MOTOR</span>)
+<span class="v">wheels</span> = <span class="v">cs</span>.<span class="a">motion</span>.<span class="f">get_controllers</span>(<span class="t">SlaveId</span>.<span class="n">WHEEL_MOTORS</span>)
+<span class="v">camera_motor</span>.<span class="a">kp</span> = <span class="n">10.0</span>
+<span class="v">wheels</span>.<span class="a">mode</span> = <span class="v">cs</span>.<span class="a">motion</span>.<span class="t">MotionMode</span>.<span class="n">VELOCITY</span>
+
+<span class="c"># Different ways to control motors via the API</span>
+<span class="v">camera_motor</span>.<span class="a">angle</span> = <span class="v">pi</span> / <span class="n">4</span>
+<span class="v">wheels</span>.<span class="f">control_vel</span>([<span class="n">1.0</span>, <span class="n">1.0</span>, <span class="n">1.0</span>, <span class="n">1.0</span>])
+
+<span class="c"># Print some real time data</span>
+<span class="f">print</span>(<span class="s">"IMU Orientation:"</span>, <span class="v">imu</span>.<span class="a">euler</span>)
+<span class="f">print</span>(<span class="s">"DC/DC Regulator Voltage:"</span>, <span class="v">cs</span>.<span class="a">power</span>.<span class="f">get_regulator</span>(<span class="a">id</span>=<span class="n">0</span>).<span class="a">voltage</span>)</pre>
+      </div>
+
+      <div class="layers frame">
+        <div class="hdr"><span><span class="co" style="font-weight:600"><i>co:</i>system</span> · stack</span><span>top → bottom</span></div>
+        <ul class="stackcol" aria-label="co:system layers">
+          <li><div class="nm">Developer API</div><div class="ds">C++ core · Python bindings · logging</div></li>
+          <li><div class="nm">Real-time control loop</div><div class="ds">Deterministic · low-jitter · sub-ms</div></li>
+          <li><div class="nm">EtherCAT master</div><div class="ds">Topology · sync · distributed clocks</div></li>
+          <li><div class="nm">Devices</div><div class="ds"><span class="co"><i>co:</i>power</span> · <span class="co"><i>co:</i>battery</span> · <span class="co"><i>co:</i>motion</span> · <span class="co"><i>co:</i>sensor</span></div></li>
+        </ul>
+        <div class="busmeta">
+          <div><div class="k">bus</div><div class="v">EtherCAT · 100 Mb/s</div></div>
+          <div><div class="k">loop</div><div class="v">1 kHz typ. · jitter &lt; 20 µs</div></div>
+          <div><div class="k">sync</div><div class="v">Distributed clocks · hw-timestamped</div></div>
         </div>
       </div>
     </div>
@@ -926,7 +978,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <div class="fcol">
         <h4>Platform</h4>
         <ul>
-          <li><a href="index.html#architecture">Architecture &amp; stack</a></li>
+          <li><a href="#architecture">Architecture &amp; stack</a></li>
           <li><a href="index.html#problem">Systems</a></li>
         </ul>
       </div>
@@ -966,7 +1018,14 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const coarse = matchMedia("(pointer: coarse)").matches;
   root.classList.add("js-motion");
-  if (reduce) root.classList.add("no-veil", "ready");
+  /* the intro veil plays once: not when moving between pages of the site */
+  let skipVeil = reduce;
+  try {
+    if (document.referrer && new URL(document.referrer).origin === location.origin) skipVeil = true;
+    if (sessionStorage.getItem("cp-visited")) skipVeil = true;
+    sessionStorage.setItem("cp-visited", "1");
+  } catch (_) {}
+  if (skipVeil) root.classList.add("no-veil", "ready");
 
   /* ── 1 · eased scrolling (Lenis-style: native scroll, lerped target) ── */
   let target = window.scrollY, current = target, running = false, raf = 0;
@@ -1103,7 +1162,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       root.classList.add("ready");
       document.querySelectorAll(".hero .w, .hero [data-rise]").forEach(el => el.classList.add("in"));
       document.querySelector(".hero-art")?.classList.add("in");
-    }, reduce ? 0 : 1050);
+    }, skipVeil ? 0 : 1050);
 
     /* nav mirrors the section you are in */
     const secs = [...document.querySelectorAll("section[id]")];

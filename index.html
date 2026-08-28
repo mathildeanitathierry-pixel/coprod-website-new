@@ -473,6 +473,23 @@ ol.mod-list .nm,ol.mod-list .kd,ol.mod-list .go,ol.mod-list .num,
 
 /* diagram svg shared type */
 svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
+
+/* small products note on the landing page */
+.pnote{display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr); gap:20px; align-items:center}
+@media (max-width:900px){ .pnote{grid-template-columns:1fr} }
+.pnote .say{display:flex; flex-direction:column; gap:18px; align-items:flex-start}
+.pnote .say p{color:var(--mute); line-height:1.7; max-width:40ch}
+.pgrid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px}
+@media (max-width:720px){ .pgrid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.pcard{
+  padding:16px 14px 14px; display:flex; flex-direction:column; gap:10px; align-items:center;
+  transition:border-color .2s, transform .2s;
+}
+.pcard:hover{border-color:var(--accent); transform:translateY(-3px)}
+.pcard .shot{height:96px; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden}
+.pcard .shot img{max-height:92px; max-width:100%; width:auto; height:auto; object-fit:contain}
+.pcard .nm{font-size:13px; text-align:center}
+
 </style>
 </head>
 <body>
@@ -555,7 +572,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
     <nav class="links">
       <a href="products.html">Products</a>
       <a href="#problem">Systems</a>
-      <a href="#architecture">Architecture</a>
+      <a href="products.html#architecture">Architecture</a>
       <a href="jobs.html">Jobs</a>
     </nav>
     <span class="spacer"></span>
@@ -801,50 +818,35 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 <hr class="rule">
 
 <!-- ══════════════ ARCHITECTURE ══════════════ -->
-<section id="architecture">
+
+<!-- ══════════════ PRODUCTS NOTE ══════════════ -->
+<section id="products-note" aria-label="Products">
   <div class="wrap">
-    <div class="head">
-      <span class="lbl"><span class="co" style="font-weight:600"><i>co:</i>system</span></span>
-      <h2>Full stack, <span class="hl">one API.</span></h2>
-    </div>
-
-    <div class="api">
-      <div class="code frame">
-        <div class="bar"><span class="dotc"></span>python</div>
-<pre><span class="k">import</span> <span class="v">cosystem</span> <span class="k">as</span> <span class="v">cs</span>
-
-<span class="c"># Initialize slaves</span>
-<span class="v">cs</span>.<span class="f">scan_network</span>()
-
-<span class="c"># Get slaves</span>
-<span class="v">imu</span> = <span class="v">cs</span>.<span class="f">get_slave</span>(<span class="t">SlaveId</span>.<span class="n">IMU</span>)
-<span class="v">camera_motor</span> = <span class="v">cs</span>.<span class="f">get_slave</span>(<span class="t">SlaveId</span>.<span class="n">CAMERA_MOTOR</span>)
-<span class="v">wheels</span> = <span class="v">cs</span>.<span class="a">motion</span>.<span class="f">get_controllers</span>(<span class="t">SlaveId</span>.<span class="n">WHEEL_MOTORS</span>)
-<span class="v">camera_motor</span>.<span class="a">kp</span> = <span class="n">10.0</span>
-<span class="v">wheels</span>.<span class="a">mode</span> = <span class="v">cs</span>.<span class="a">motion</span>.<span class="t">MotionMode</span>.<span class="n">VELOCITY</span>
-
-<span class="c"># Different ways to control motors via the API</span>
-<span class="v">camera_motor</span>.<span class="a">angle</span> = <span class="v">pi</span> / <span class="n">4</span>
-<span class="v">wheels</span>.<span class="f">control_vel</span>([<span class="n">1.0</span>, <span class="n">1.0</span>, <span class="n">1.0</span>, <span class="n">1.0</span>])
-
-<span class="c"># Print some real time data</span>
-<span class="f">print</span>(<span class="s">"IMU Orientation:"</span>, <span class="v">imu</span>.<span class="a">euler</span>)
-<span class="f">print</span>(<span class="s">"DC/DC Regulator Voltage:"</span>, <span class="v">cs</span>.<span class="a">power</span>.<span class="f">get_regulator</span>(<span class="a">id</span>=<span class="n">0</span>).<span class="a">voltage</span>)</pre>
+    <div class="pnote">
+      <div class="say">
+        <span class="lbl">products</span>
+        <h2>Hardware that <span class="hl">composes.</span></h2>
+        <p>Power, batteries, motion and sensing. Designed to snap together into a complete robot, or to drop into yours.</p>
+        <a class="btn ghost" href="products.html">Products <span class="arw">&#8594;</span></a>
       </div>
 
-      <div class="layers frame">
-        <div class="hdr"><span><span class="co" style="font-weight:600"><i>co:</i>system</span> · stack</span><span>top → bottom</span></div>
-        <ul class="stackcol" aria-label="co:system layers">
-          <li><div class="nm">Developer API</div><div class="ds">C++ core · Python bindings · logging</div></li>
-          <li><div class="nm">Real-time control loop</div><div class="ds">Deterministic · low-jitter · sub-ms</div></li>
-          <li><div class="nm">EtherCAT master</div><div class="ds">Topology · sync · distributed clocks</div></li>
-          <li><div class="nm">Devices</div><div class="ds"><span class="co"><i>co:</i>power</span> · <span class="co"><i>co:</i>battery</span> · <span class="co"><i>co:</i>motion</span> · <span class="co"><i>co:</i>sensor</span></div></li>
-        </ul>
-        <div class="busmeta">
-          <div><div class="k">bus</div><div class="v">EtherCAT · 100 Mb/s</div></div>
-          <div><div class="k">loop</div><div class="v">1 kHz typ. · jitter &lt; 20 µs</div></div>
-          <div><div class="k">sync</div><div class="v">Distributed clocks · hw-timestamped</div></div>
-        </div>
+      <div class="pgrid">
+        <a class="pcard frame" href="products.html#copower">
+          <span class="shot"><img src="assets/img/effaf5fba3.webp" alt="Motherboard" loading="lazy" decoding="async"></span>
+          <span class="nm co"><i>co:</i>power</span>
+        </a>
+        <a class="pcard frame" href="products.html#cobattery">
+          <span class="shot"><img src="assets/img/7e388e4667.webp" alt="co:battery pack" loading="lazy" decoding="async"></span>
+          <span class="nm co"><i>co:</i>battery</span>
+        </a>
+        <a class="pcard frame" href="products.html#comotion">
+          <span class="shot"><img src="assets/img/b5bac88281.webp" alt="co:motion controller board" loading="lazy" decoding="async"></span>
+          <span class="nm co"><i>co:</i>motion</span>
+        </a>
+        <a class="pcard frame" href="products.html#cosensor">
+          <span class="shot"><img src="assets/img/ea4ac10d96.webp" alt="co:sense IMU" loading="lazy" decoding="async"></span>
+          <span class="nm co"><i>co:</i>sensor</span>
+        </a>
       </div>
     </div>
   </div>
@@ -977,7 +979,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <div class="fcol">
         <h4>Platform</h4>
         <ul>
-          <li><a href="#architecture">Architecture &amp; stack</a></li>
+          <li><a href="products.html#architecture">Architecture &amp; stack</a></li>
           <li><a href="#problem">Systems</a></li>
         </ul>
       </div>
@@ -1013,7 +1015,14 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const coarse = matchMedia("(pointer: coarse)").matches;
   root.classList.add("js-motion");
-  if (reduce) root.classList.add("no-veil", "ready");
+  /* the intro veil plays once: not when moving between pages of the site */
+  let skipVeil = reduce;
+  try {
+    if (document.referrer && new URL(document.referrer).origin === location.origin) skipVeil = true;
+    if (sessionStorage.getItem("cp-visited")) skipVeil = true;
+    sessionStorage.setItem("cp-visited", "1");
+  } catch (_) {}
+  if (skipVeil) root.classList.add("no-veil", "ready");
 
   /* ── 1 · eased scrolling (Lenis-style: native scroll, lerped target) ── */
   let target = window.scrollY, current = target, running = false, raf = 0;
@@ -1136,7 +1145,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       if (splitWords(el)) el.querySelectorAll(".w").forEach(w => io.observe(w));
     });
     document.querySelectorAll(
-      ".pillar, .prod, .spec, .mods, .code, .layers, .diagram, .sys, .ship > div, ul.ticks li, .fcol, .fbrand, .act-stage"
+      ".pillar, .prod, .pcard, .spec, .mods, .code, .layers, .diagram, .sys, .ship > div, ul.ticks li, .fcol, .fbrand, .act-stage"
     ).forEach((el, i) => {
       el.setAttribute("data-rise", "");
       el.style.transitionDelay = ((i % 5) * 0.06).toFixed(2) + "s";
@@ -1150,7 +1159,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       root.classList.add("ready");
       document.querySelectorAll(".hero .w, .hero [data-rise]").forEach(el => el.classList.add("in"));
       document.querySelector(".hero-art")?.classList.add("in");
-    }, reduce ? 0 : 1050);
+    }, skipVeil ? 0 : 1050);
 
     /* nav mirrors the section you are in */
     const secs = [...document.querySelectorAll("section[id]")];
