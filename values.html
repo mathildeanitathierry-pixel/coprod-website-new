@@ -673,11 +673,22 @@ ol.mod-list .go{display:block; margin-top:8px}
   .mark .logo{height:17px}
 }
 
+
+/* Phones: a blurred sticky bar makes iOS re-blur the page behind it on every
+   scroll frame, which is the single biggest cost on a phone. Solid bar there.
+   The hero transforms only run above 900px, so drop their will-change hints
+   too rather than pinning layers that never move. */
+@media (max-width:940px){
+  header{backdrop-filter:none; -webkit-backdrop-filter:none; background:var(--ground)}
+  .hero-type, html.js-motion .hero-art .biped{will-change:auto}
+  .signup{box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent)}
+  .cta-band{background:var(--panel)}
+}
+
 </style>
 </head>
 <body>
 
-<div id="veil"><span class="vmark"></span></div>
 
 <!-- ══════════════ NAV ══════════════ -->
 <header>
@@ -1016,13 +1027,8 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   const coarse = matchMedia("(pointer: coarse)").matches;
   root.classList.add("js-motion");
   /* the intro veil plays once: not when moving between pages of the site */
-  let skipVeil = reduce;
-  try {
-    if (document.referrer && new URL(document.referrer).origin === location.origin) skipVeil = true;
-    if (sessionStorage.getItem("cp-visited")) skipVeil = true;
-    sessionStorage.setItem("cp-visited", "1");
-  } catch (_) {}
-  if (skipVeil) root.classList.add("no-veil", "ready");
+  const skipVeil = true;                    /* no intro curtain, ever */
+  root.classList.add("no-veil", "ready");
 
   /* ── 1 · eased scrolling (Lenis-style: native scroll, lerped target) ── */
   let target = window.scrollY, current = target, running = false, raf = 0;
