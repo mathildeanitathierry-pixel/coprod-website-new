@@ -546,6 +546,56 @@ ol.mod-list li.on .pip{background:var(--accent); box-shadow:0 0 10px var(--accen
 ol.mod-list .go{display:block; margin-top:8px}
 @media (max-width:640px){ ol.mod-list .row{grid-template-columns:32px minmax(0,1fr) 7px} }
 
+
+/* ═══ BOTTOM CTA (every page) ═════════════════════════════ */
+.cta-band{
+  position:relative; overflow:hidden;
+  border-top:1px solid var(--accent);
+  background:
+    radial-gradient(120% 140% at 12% 0%, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 62%),
+    var(--panel);
+  padding:clamp(46px,6vw,84px) 0;
+}
+.cta-band .inner{
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.92fr);
+  gap:clamp(26px,4vw,56px); align-items:center;
+}
+@media (max-width:900px){ .cta-band .inner{grid-template-columns:1fr; gap:30px} }
+.cta-band h2{font-size:clamp(28px,3.6vw,46px); line-height:1.1}
+.cta-band .say{display:flex; flex-direction:column; gap:16px; align-items:flex-start}
+.cta-band .say p{color:var(--mute); line-height:1.65; max-width:46ch; font-size:14.5px}
+.cta-band .links{display:flex; flex-wrap:wrap; gap:12px; margin-top:4px}
+
+.signup{
+  border:1px solid var(--accent); background:var(--ground);
+  padding:clamp(24px,3vw,34px); display:flex; flex-direction:column; gap:14px;
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent),
+             0 18px 60px -28px var(--accent);
+}
+.signup .kd{
+  font-family:var(--font-head); font-size:10px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--accent);
+}
+.signup label{
+  font-family:var(--font-head); font-size:9.5px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--faint);
+}
+.signup .row{display:flex; gap:10px; flex-wrap:wrap}
+.signup input{
+  flex:1 1 220px; min-width:0; padding:15px 16px;
+  background:var(--panel); border:1px solid var(--hairline); color:var(--ink);
+  font-family:var(--font-body); font-size:15px; outline:none;
+  transition:border-color .16s, box-shadow .16s;
+}
+.signup input::placeholder{color:var(--faint)}
+.signup input:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-wash)}
+.signup button{flex:0 0 auto; padding:15px 22px; cursor:pointer; border:1px solid var(--ink)}
+.signup .fine{font-size:11.5px; color:var(--faint)}
+.signup .done{display:none; font-size:13.5px; color:var(--accent)}
+.signup.sent .row,.signup.sent label,.signup.sent .fine{display:none}
+.signup.sent .done{display:block}
+@media (max-width:520px){ .signup button{width:100%} }
+
 </style>
 </head>
 <body>
@@ -982,6 +1032,34 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 
 
 <!-- ══════════════ FOOTER ══════════════ -->
+
+<!-- ══════════════ BOTTOM CTA ══════════════ -->
+<section class="cta-band" aria-label="Early adopters">
+  <div class="wrap inner">
+    <div class="say">
+      <span class="lbl">early adopters</span>
+      <h2>Build robots like <span class="hl">software systems.</span></h2>
+      <p>We work with teams building real robots. Tell us what you're building.</p>
+      <div class="links">
+        <a class="btn ghost" href="mailto:contact@coprod.ch">contact@coprod.ch</a>
+        <a class="btn ghost" href="products.html">Explore <span class="co"><i>co:</i>products</span></a>
+      </div>
+    </div>
+
+    <form class="signup" id="signup" data-endpoint="">
+      <span class="kd">We will inform you of future releases</span>
+      <label for="cta-email">Email address</label>
+      <div class="row">
+        <input id="cta-email" name="email" type="email" required
+               placeholder="you@example.com" autocomplete="email">
+        <button class="btn" type="submit">Stay in the Loop</button>
+      </div>
+      <div class="fine">We hate spam, we'll respect your inbox.</div>
+      <div class="done" role="status">Thank you. We will be in touch.</div>
+    </form>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div class="fgrid">
@@ -1314,6 +1392,30 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   /* warm the swap images so the panel never flashes empty */
   [...list.children].forEach(li => {
     if (li.dataset.img) { const i = new Image(); i.src = li.dataset.img; }
+  });
+})();
+</script>
+<script>
+(() => {
+  const f = document.getElementById("signup");
+  if (!f) return;
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    const email = f.querySelector("input").value.trim();
+    if (!email) return;
+    const ep = f.dataset.endpoint;
+    if (ep) {
+      try {
+        await fetch(ep, { method: "POST", headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({ email }) });
+      } catch (_) {}
+      f.classList.add("sent");
+    } else {
+      /* no list backend yet: hand it to the mail client so the button is never dead */
+      location.href = "mailto:contact@coprod.ch?subject=Early%20access&body=" +
+                      encodeURIComponent(email);
+      f.classList.add("sent");
+    }
   });
 })();
 </script>
