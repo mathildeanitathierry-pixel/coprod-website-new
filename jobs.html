@@ -8,7 +8,7 @@
 
 <style>
 
-/* ═══ EMBEDDED FONTS (OFL) — self-contained, no network needed ═══ */
+/* ═══ EMBEDDED FONTS (OFL) - self-contained, no network needed ═══ */
 @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/space-grotesk.woff2) format("woff2-variations")}
 @font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/fonts/manrope.woff2) format("woff2-variations")}
 @font-face{font-family:"Audiowide";font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/audiowide.woff2) format("woff2")}
@@ -159,7 +159,7 @@ nav.links a:hover,nav.links a.on,nav.links a.cur{color:var(--ink); background:va
 .biped canvas{display:block; image-rendering:pixelated}
 .biped:focus-visible{outline:2px solid var(--accent); outline-offset:8px}
 
-/* ═══ HERO — pinned art, scroll-driven headline ═════════════ */
+/* ═══ HERO - pinned art, scroll-driven headline ═════════════ */
 .hero{padding:0; height:290vh; position:relative}
 .hero-pin{
   position:sticky; top:56px; height:calc(100vh - 56px);
@@ -454,7 +454,7 @@ ol.mod-list .nm,ol.mod-list .kd,ol.mod-list .go,ol.mod-list .num,
   .tri .pillar:nth-child(3) .sweep{animation-delay:1s}
   @keyframes sweep{0%{left:-45%}55%,100%{left:112%}}
 
-  /* corner ticks beat in unison — one bus, one clock */
+  /* corner ticks beat in unison - one bus, one clock */
   .tri .pillar::before,.tri .pillar::after{animation:tick 2.6s ease-in-out infinite}
   @keyframes tick{0%,100%{border-color:var(--ink)}50%{border-color:var(--accent)}}
 }
