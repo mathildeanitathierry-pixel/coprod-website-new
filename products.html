@@ -662,6 +662,66 @@ ol.mod-list .thumb{width:54px}
   #copower .spec .board, #copower .spec .board img{max-height:none; min-height:auto}
 }
 
+
+/* ═══ MOBILE NAV ══════════════════════════════════════════ */
+.burger{display:none}
+.hiring-m{display:none}
+@media (max-width:940px){
+  .nav{height:52px}
+  .mark{padding:0 16px}
+  .mark .logo{height:19px}
+  .nav .spacer{display:block; flex:1; border-right:0}
+
+  .burger{
+    display:flex; align-items:center; justify-content:center; flex:none;
+    width:52px; height:52px; padding:0; margin:0;
+    background:transparent; color:var(--ink); cursor:pointer;
+    border:0; border-left:1px solid var(--rule);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .burger i{
+    display:block; position:relative; width:17px; height:1.5px;
+    background:currentColor; transition:background .18s;
+  }
+  .burger i::before,.burger i::after{
+    content:""; position:absolute; left:0; width:17px; height:1.5px;
+    background:currentColor; transition:transform .22s ease, top .22s ease;
+  }
+  .burger i::before{top:-5.5px}
+  .burger i::after{top:5.5px}
+  header.open .burger i{background:transparent}
+  header.open .burger i::before{top:0; transform:rotate(45deg)}
+  header.open .burger i::after{top:0; transform:rotate(-45deg)}
+
+  /* the desktop link row becomes a dropped panel */
+  nav.links{
+    display:none; position:absolute; top:100%; left:0; right:0;
+    flex-direction:column; z-index:59;
+    background:var(--ground); border-bottom:1px solid var(--rule);
+    max-height:calc(100dvh - 52px); overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  header.open nav.links{display:flex}
+  nav.links a{
+    height:auto; padding:17px 18px; font-size:12px;
+    border-right:0; border-bottom:1px solid var(--rule);
+  }
+  nav.links a:last-child{border-bottom:0}
+  .hiring{display:none}
+  .hiring-m{
+    display:flex; align-items:center; gap:9px;
+    color:var(--accent) !important; background:var(--accent-wash);
+  }
+  .hiring-m .pulse{
+    width:6px; height:6px; flex:none;
+    background:var(--accent); animation:blink 1.9s steps(1) infinite;
+  }
+}
+@media (max-width:400px){
+  .mark{padding:0 13px}
+  .mark .logo{height:17px}
+}
+
 </style>
 </head>
 <body>
@@ -741,14 +801,16 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 -43 0 -245 0 -245 23 -33 22 -33 35 -19 35 -19 232 3 232 3 27 21 c15 11 37
 33 48 48 l21 27 3 232 3 232 -19 35 -19 35 -33 23 -33 22 -245 0 -245 0 -43
 -44z"/></g></svg></a>
-    <nav class="links">
+    <nav class="links" id="navlinks">
       <a href="products.html">Products</a>
       <a href="systems.html">Systems</a>
-      <a href="#architecture">Architecture</a>
+      <a href="index.html#architecture">Architecture</a>
       <a href="jobs.html">Jobs</a>
+      <a class="hiring-m" href="jobs.html"><span class="pulse"></span>We're hiring</a>
     </nav>
     <span class="spacer"></span>
     <a class="hiring" href="jobs.html"><span class="pulse"></span>We're hiring</a>
+  <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><i aria-hidden="true"></i></button>
   </div>
   <div id="rail"><span></span></div>
 </header>
@@ -1156,7 +1218,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <div class="fcol">
         <h4>Platform</h4>
         <ul>
-          <li><a href="#architecture">Architecture &amp; stack</a></li>
+          <li><a href="index.html#architecture">Architecture &amp; stack</a></li>
           <li><a href="systems.html">Systems</a></li>
         </ul>
       </div>
@@ -1417,6 +1479,20 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       f.classList.add("sent");
     }
   });
+})();
+</script>
+<script>
+(() => {
+  const h = document.querySelector("header");
+  const b = h && h.querySelector(".burger");
+  const menu = h && h.querySelector("nav.links");
+  if (!h || !b || !menu) return;
+  const set = on => { h.classList.toggle("open", on); b.setAttribute("aria-expanded", on); };
+  b.addEventListener("click", e => { e.stopPropagation(); set(!h.classList.contains("open")); });
+  menu.addEventListener("click", e => { if (e.target.closest("a")) set(false); });
+  document.addEventListener("click", e => { if (!h.contains(e.target)) set(false); });
+  addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
+  addEventListener("resize", () => { if (innerWidth > 940) set(false); });
 })();
 </script>
 </body>
