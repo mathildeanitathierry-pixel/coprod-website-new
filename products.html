@@ -505,6 +505,47 @@ svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
 }
 .head .detail:hover{text-decoration:underline}
 
+
+/* co:power submodule selector (click a submodule, the panel follows) */
+.spec{position:relative; overflow:hidden}
+.spec::before{
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:linear-gradient(var(--rule) 1px, transparent 1px),
+                   linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(120% 100% at 50% 45%, #000 55%, transparent 100%);
+          mask-image:radial-gradient(120% 100% at 50% 45%, #000 55%, transparent 100%);
+}
+.spec > *{position:relative; z-index:1}
+.spec .caps{display:flex; justify-content:space-between; align-items:baseline; gap:14px}
+.spec .board{min-height:clamp(220px,26vw,360px); align-content:center}
+.spec .board img{transition:opacity .22s ease}
+.spec.swapping .board img{opacity:0}
+.soonbox{
+  width:min(78%,420px); aspect-ratio:4/3; display:grid; place-items:center;
+  border:1px solid var(--rule); background:color-mix(in srgb, var(--ink) 4%, transparent);
+}
+.soonbox span{
+  font-family:var(--font-mono); font-size:11px; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--faint); border:1px solid var(--rule);
+  padding:10px 16px; background:var(--ground);
+}
+ol.mod-list .row{cursor:pointer}
+ol.mod-list .row{grid-template-columns:38px 74px minmax(0,1fr) auto}
+ol.mod-list .ds{
+  display:none; margin-top:9px;
+}
+ol.mod-list li.on .ds{display:block}
+ol.mod-list li.on{border:1px solid var(--accent); background:var(--accent-wash)}
+ol.mod-list li.on + li{border-top:0}
+ol.mod-list .pip{
+  width:7px; height:7px; border-radius:50%; background:var(--hairline);
+  align-self:center; justify-self:end; transition:background .18s, box-shadow .18s;
+}
+ol.mod-list li.on .pip{background:var(--accent); box-shadow:0 0 10px var(--accent)}
+ol.mod-list .go{display:block; margin-top:8px}
+@media (max-width:640px){ ol.mod-list .row{grid-template-columns:32px minmax(0,1fr) 7px} }
+
 </style>
 </head>
 <body>
@@ -638,54 +679,88 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       </div>
     </div>
     <div class="feature">
-      <div class="spec frame">
-        <span class="lbl mono-mute"><span class="co"><i>co:</i>power</span></span>
-        <span class="lbl mono-mute">Motherboard</span>
-        <div class="board"><img src="assets/img/9d9bba2084.webp" alt="Motherboard"></div>
+      <div class="spec frame" id="powerviz">
+        <div class="caps">
+          <span class="lbl mono-mute"><span class="co"><i>co:</i>power</span></span>
+          <span class="lbl mono-mute" id="pv-name">Power Logic</span>
+        </div>
+        <div class="board" id="pv-board">
+          <img id="pv-img" src="assets/img/c562615fab.webp" alt="Power Logic">
+        </div>
         <div class="tags">
-          <span class="chip acc">Ready-to-buy motherboards</span>
-          <span class="chip">Custom designs on request</span>
+          <span class="chip acc" id="pv-c1">10&#8211;54.6V &middot; EtherCAT 1kHz+</span>
+          <span class="chip" id="pv-c2">Control of up to 6 modules</span>
         </div>
       </div>
       <div class="mods frame">
         <span class="lbl mono-mute" style="display:block;margin-bottom:14px">submodules</span>
         <p style="margin-bottom:22px;max-width:56ch">Compose only what your robot needs. Submodules interlock on a motherboard that you can configure, or order fully custom.</p>
-        <ol class="mod-list">
-          <li><div class="row">
-            <span class="num">01</span>
-            <img class="thumb" src="assets/img/ccdaa1e6a6.webp" alt="Power Logic"  loading="lazy" decoding="async">
-            <div><div class="nm">Power Logic</div><div class="kd">Supervisor &amp; safety</div>
-              <div class="ds">Top-level power supervisor: monitoring, fault detection, e-stop and bus-off handling.</div></div>
-            <a class="go" href="/products/power-logic">Details →</a>
-          </div></li>
-          <li><div class="row">
-            <span class="num">02</span>
-            <span></span>
-            <div><div class="nm">Precharge</div><div class="kd">Bus inrush control</div>
-              <div class="ds">Controlled soft-start to charge downstream capacitors.</div></div>
-            <a class="go" href="/products/precharge">Details →</a>
-          </div></li>
-          <li><div class="row">
-            <span class="num">03</span>
-            <img class="thumb" src="assets/img/c562615fab.webp" alt="Regulator" loading="lazy" decoding="async">
-            <div><div class="nm">Regulator</div><div class="kd">Voltage regulation &amp; isolation</div>
-              <div class="ds">Wide-input galvanically isolated DC/DC converter with extensive protection and telemetry.</div></div>
-            <a class="go" href="/products/regulator">Details →</a>
-          </div></li>
-          <li><div class="row">
-            <span class="num">04</span>
-            <span></span>
-            <div><div class="nm">Brake</div><div class="kd">Regen clamp</div>
-              <div class="ds">Active brake chopper for handling regenerative energy during deceleration.</div></div>
-            <a class="go" href="/products/brake">Details →</a>
-          </div></li>
-          <li><div class="row">
-            <span class="num">05</span>
-            <img class="thumb" src="assets/img/effaf5fba3.webp" alt="Motherboard" loading="lazy" decoding="async">
-            <div><div class="nm">Motherboard</div><div class="kd">Configurable backplane</div>
-              <div class="ds">Carries and interconnects <span class="co"><i>co:</i>system</span> power submodules. Customizable for your system topology.</div></div>
-            <a class="go" href="/products/motherboard">Details →</a>
-          </div></li>
+        <ol class="mod-list" id="modlist">
+          <li class="on" data-mod="01"
+              data-name="Power Logic" data-img="assets/img/c562615fab.webp"
+              data-c1="10&#8211;54.6V &middot; EtherCAT 1kHz+" data-c2="Control of up to 6 modules">
+            <div class="row" role="button" tabindex="0" aria-label="Show Power Logic">
+              <span class="num">01</span>
+              <img class="thumb" src="assets/img/c562615fab.webp" alt="Power Logic" loading="lazy" decoding="async">
+              <div>
+                <div class="nm">Power Logic</div><div class="kd">Supervisor &amp; safety</div>
+                <div class="ds">Top-level power supervisor: monitoring, fault detection, e-stop and bus-off handling.<a class="go" href="/products/power-logic">Details &#8594;</a></div>
+              </div>
+              <span class="pip" aria-hidden="true"></span>
+            </div>
+          </li>
+          <li data-mod="02"
+              data-name="Precharge" data-img=""
+              data-c1="10&#8211;54.6 V &middot; 80 A peak / 50 A cont." data-c2="Max. output capacitance: 10mF">
+            <div class="row" role="button" tabindex="0" aria-label="Show Precharge">
+              <span class="num">02</span>
+              <span class="thumb"></span>
+              <div>
+                <div class="nm">Precharge</div><div class="kd">Bus inrush control</div>
+                <div class="ds">Controlled soft-start to charge downstream capacitors.<a class="go" href="/products/precharge">Details &#8594;</a></div>
+              </div>
+              <span class="pip" aria-hidden="true"></span>
+            </div>
+          </li>
+          <li data-mod="03"
+              data-name="Regulator" data-img="assets/img/ccdaa1e6a6.webp"
+              data-c1="18&#8211;54.6 V in &middot; 3 kV isolation" data-c2="24/15/12/5/3.3 V rails">
+            <div class="row" role="button" tabindex="0" aria-label="Show Regulator">
+              <span class="num">03</span>
+              <img class="thumb" src="assets/img/ccdaa1e6a6.webp" alt="Regulator" loading="lazy" decoding="async">
+              <div>
+                <div class="nm">Regulator</div><div class="kd">Voltage regulation &amp; isolation</div>
+                <div class="ds">Wide-input galvanically isolated DC/DC converter with extensive protection and telemetry.<a class="go" href="/products/regulator">Details &#8594;</a></div>
+              </div>
+              <span class="pip" aria-hidden="true"></span>
+            </div>
+          </li>
+          <li data-mod="04"
+              data-name="Brake" data-img=""
+              data-c1="10&#8211;54.6 V &middot; 500 W peak" data-c2="Parallelizable for load sharing">
+            <div class="row" role="button" tabindex="0" aria-label="Show Brake">
+              <span class="num">04</span>
+              <span class="thumb"></span>
+              <div>
+                <div class="nm">Brake</div><div class="kd">Regen clamp</div>
+                <div class="ds">Active brake chopper for handling regenerative energy during deceleration.<a class="go" href="/products/brake">Details &#8594;</a></div>
+              </div>
+              <span class="pip" aria-hidden="true"></span>
+            </div>
+          </li>
+          <li data-mod="05"
+              data-name="Motherboard" data-img="assets/img/9d9bba2084.webp"
+              data-c1="Ready-to-buy motherboards" data-c2="Custom designs on request">
+            <div class="row" role="button" tabindex="0" aria-label="Show Motherboard">
+              <span class="num">05</span>
+              <img class="thumb" src="assets/img/9d9bba2084.webp" alt="Motherboard" loading="lazy" decoding="async">
+              <div>
+                <div class="nm">Motherboard</div><div class="kd">Configurable backplane</div>
+                <div class="ds">Carries and interconnects <span class="co"><i>co:</i>system</span> power submodules. Customizable for your system topology.<a class="go" href="/products/motherboard">Details &#8594;</a></div>
+              </div>
+              <span class="pip" aria-hidden="true"></span>
+            </div>
+          </li>
         </ol>
       </div>
     </div>
@@ -1207,5 +1282,40 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 })();
 </script>
 <script src="assets/actuator-gl.js" defer></script>
+<script>
+(() => {
+  const list = document.getElementById("modlist");
+  if (!list) return;
+  const nameEl = document.getElementById("pv-name");
+  const board  = document.getElementById("pv-board");
+  const spec   = document.getElementById("powerviz");
+  const c1 = document.getElementById("pv-c1"), c2 = document.getElementById("pv-c2");
+
+  function show(li) {
+    if (!li || li.classList.contains("on")) return;
+    [...list.children].forEach(x => x.classList.toggle("on", x === li));
+    nameEl.textContent = li.dataset.name;
+    c1.innerHTML = li.dataset.c1;
+    c2.innerHTML = li.dataset.c2;
+    spec.classList.add("swapping");
+    setTimeout(() => {
+      const src = li.dataset.img;
+      board.innerHTML = src
+        ? '<img id="pv-img" src="' + src + '" alt="' + li.dataset.name + '">'
+        : '<div class="soonbox"><span>coming soon</span></div>';
+      spec.classList.remove("swapping");
+    }, 180);
+  }
+
+  list.addEventListener("click", e => show(e.target.closest("li")));
+  list.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(e.target.closest("li")); }
+  });
+  /* warm the swap images so the panel never flashes empty */
+  [...list.children].forEach(li => {
+    if (li.dataset.img) { const i = new Image(); i.src = li.dataset.img; }
+  });
+})();
+</script>
 </body>
 </html>
