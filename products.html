@@ -495,6 +495,16 @@ ol.mod-list .nm,ol.mod-list .kd,ol.mod-list .go,ol.mod-list .num,
 
 /* diagram svg shared type */
 svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
+
+/* numbered section markers, as on coprod.co */
+.snum{font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--accent); letter-spacing:.08em}
+.modchips{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px}
+.head .detail{
+  align-self:flex-start; font-family:var(--font-head); font-size:10.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); margin-top:2px;
+}
+.head .detail:hover{text-decoration:underline}
+
 </style>
 </head>
 <body>
@@ -614,12 +624,22 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 <section id="copower">
   <div class="wrap">
     <div class="head">
+      <span class="snum">01</span>
       <span class="lbl"><span class="co"><i>co:</i>power</span></span>
       <h2>A modular power system.</h2>
       <p class="lead">Precharge, regulate, dump and supervise. On a motherboard you configure. Pay only for the topology you need.</p>
+      <span class="lbl mono-mute" style="margin-top:6px">modules</span>
+      <div class="modchips">
+        <span class="chip">Power Logic</span>
+        <span class="chip">Precharge</span>
+        <span class="chip">Regulator</span>
+        <span class="chip">Brake</span>
+        <span class="chip">Motherboard</span>
+      </div>
     </div>
     <div class="feature">
       <div class="spec frame">
+        <span class="lbl mono-mute"><span class="co"><i>co:</i>power</span></span>
         <span class="lbl mono-mute">Power system</span>
         <div class="board"><img src="assets/img/9d9bba2084.webp" alt="Power system"></div>
         <div class="tags">
@@ -683,9 +703,11 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 <section id="cobattery">
   <div class="wrap">
     <div class="head">
+      <span class="snum">02</span>
       <span class="lbl"><span class="co"><i>co:</i>battery</span></span>
       <h2>Robot-ready battery packs.</h2>
       <p class="lead">Fully integrated batteries for your next robot. Bus-native telemetry, onboard protection, and mechanical integration that matches the rest of <span class="co"><i>co:</i>system</span>.</p>
+      <a class="detail" href="/products/battery">Details &#8594;</a>
     </div>
     <div class="p-split">
       <div class="p-viz frame">
@@ -711,9 +733,11 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 <section id="comotion">
   <div class="wrap">
     <div class="head">
+      <span class="snum">03</span>
       <span class="lbl"><span class="co"><i>co:</i>motion</span></span>
       <h2>Motion controllers.</h2>
       <p class="lead">Real-time EtherCAT motion controllers for high-performance joint control. Deterministic loops, rich feedback, and safety where it matters.</p>
+      <a class="detail" href="/products/motion">Details &#8594;</a>
     </div>
     <div class="p-split">
       <div class="p-viz frame">
@@ -739,9 +763,11 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 <section id="cosensor">
   <div class="wrap">
     <div class="head">
+      <span class="snum">04</span>
       <span class="lbl"><span class="co"><i>co:</i>sensor</span></span>
       <h2>Sensing, synchronized.</h2>
       <p class="lead"><span class="co"><i>co:</i>sense</span> starts with a compact EtherCAT AHRS. Dual-redundant sensing, on-board fusion, and outputs your stack can trust at loop rate. More sensor modalities on the way.</p>
+      <a class="detail" href="/products/sensor">Details &#8594;</a>
     </div>
     <div class="p-split">
       <div class="p-viz frame">
@@ -821,6 +847,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 <section id="future">
   <div class="wrap">
     <div class="head">
+      <span class="snum">05</span>
       <span class="lbl">roadmap</span>
       <h2>What comes next.</h2>
       <p class="lead">We build what our own robots need. These are already in the pipeline.</p>
