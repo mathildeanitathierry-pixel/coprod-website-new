@@ -734,6 +734,40 @@ ol.mod-list .thumb{width:54px}
   .cta-band{background:var(--panel)}
 }
 
+
+/* hero anchors carry the module they jump to */
+.anchor-nav{gap:12px}
+.anchor-nav a{
+  display:flex; align-items:center; gap:11px; padding:9px 15px 9px 9px;
+}
+.anchor-nav a.noimg{padding:9px 16px}
+.anchor-nav .th{
+  width:40px; height:40px; flex:none; display:grid; place-items:center;
+  background:var(--panel); border:1px solid var(--rule); overflow:hidden;
+}
+.anchor-nav .th img{
+  max-width:34px; max-height:34px; width:auto; height:auto; display:block;
+  transition:transform .2s ease;
+}
+.anchor-nav a:hover .th{border-color:var(--accent)}
+.anchor-nav a:hover .th img{transform:scale(1.08)}
+@media (max-width:560px){
+  .anchor-nav{gap:8px}
+  .anchor-nav a{padding:7px 12px 7px 7px; gap:9px}
+  .anchor-nav .th{width:32px; height:32px}
+  .anchor-nav .th img{max-width:27px; max-height:27px}
+}
+
+
+/* pages for the individual modules do not exist yet: say so instead of 404ing */
+.go.soon, .detail.soon{color:var(--faint); cursor:default; text-decoration:none}
+.detail.soon:hover{text-decoration:none}
+
+
+/* The logo mark hangs below the wordmark, so its visual mass sits low and the
+   nav labels read as floating high next to it. Nudge them down to match. */
+@media (min-width:941px){ nav.links a{position:relative; top:2px} }
+
 </style>
 </head>
 <body>
@@ -816,11 +850,9 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <a href="products.html">Products</a>
       <a href="systems.html">Systems</a>
       <a href="index.html#architecture">Architecture</a>
-      <a href="jobs.html">Jobs</a>
-      <a class="hiring-m" href="jobs.html"><span class="pulse"></span>We're hiring</a>
+      <a href="jobs.html">Careers</a>
     </nav>
     <span class="spacer"></span>
-    <a class="hiring" href="jobs.html"><span class="pulse"></span>We're hiring</a>
   <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><i aria-hidden="true"></i></button>
   </div>
   <div id="rail"><span></span></div>
@@ -835,11 +867,11 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <h1 class="p-title">Hardware that composes.</h1>
       <p class="lead">Every coprod module speaks EtherCAT and shares the same control API. Power, batteries, motion and sensing. Designed to snap together into a complete robot, or to drop into yours.</p>
       <nav class="anchor-nav" aria-label="products">
-        <a href="#copower"><span class="co"><i>co:</i>power</span></a>
-        <a href="#cobattery"><span class="co"><i>co:</i>battery</span></a>
-        <a href="#comotion"><span class="co"><i>co:</i>motion</span></a>
-        <a href="#cosensor"><span class="co"><i>co:</i>sensor</span></a>
-        <a href="#future">Roadmap</a>
+        <a href="#copower"><span class="th"><img src="assets/img/7e388e4667.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>power</span></a>
+        <a href="#cobattery"><span class="th"><img src="assets/img/effaf5fba3.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>battery</span></a>
+        <a href="#comotion"><span class="th"><img src="assets/img/b5bac88281.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>motion</span></a>
+        <a href="#cosensor"><span class="th"><img src="assets/img/ea4ac10d96.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>sensor</span></a>
+        <a class="noimg" href="#future">Roadmap</a>
       </nav>
     </div>
 
@@ -884,7 +916,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
               <img class="thumb" src="assets/img/20f4fdc58e.webp" alt="Power Logic" loading="lazy" decoding="async">
               <div>
                 <div class="nm">Power Logic</div><div class="kd">Supervisor &amp; safety</div>
-                <div class="ds">Top-level power supervisor: monitoring, fault detection, e-stop and bus-off handling.<a class="go" href="/products/power-logic">Details &#8594;</a></div>
+                <div class="ds">Top-level power supervisor: monitoring, fault detection, e-stop and bus-off handling.<span class="go soon">Details coming soon</span></div>
               </div>
               <span class="pip" aria-hidden="true"></span>
             </div>
@@ -897,7 +929,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
               <img class="thumb" src="assets/img/cedb459bc4.webp" alt="Precharge" loading="lazy" decoding="async">
               <div>
                 <div class="nm">Precharge</div><div class="kd">Bus inrush control</div>
-                <div class="ds">Controlled soft-start to charge downstream capacitors.<a class="go" href="/products/precharge">Details &#8594;</a></div>
+                <div class="ds">Controlled soft-start to charge downstream capacitors.<span class="go soon">Details coming soon</span></div>
               </div>
               <span class="pip" aria-hidden="true"></span>
             </div>
@@ -910,7 +942,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
               <img class="thumb" src="assets/img/37bedb8f9c.webp" alt="Regulator" loading="lazy" decoding="async">
               <div>
                 <div class="nm">Regulator</div><div class="kd">Voltage regulation &amp; isolation</div>
-                <div class="ds">Wide-input galvanically isolated DC/DC converter with extensive protection and telemetry.<a class="go" href="/products/regulator">Details &#8594;</a></div>
+                <div class="ds">Wide-input galvanically isolated DC/DC converter with extensive protection and telemetry.<span class="go soon">Details coming soon</span></div>
               </div>
               <span class="pip" aria-hidden="true"></span>
             </div>
@@ -923,7 +955,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
               <span class="thumb"></span>
               <div>
                 <div class="nm">Brake</div><div class="kd">Regen clamp</div>
-                <div class="ds">Active brake chopper for handling regenerative energy during deceleration.<a class="go" href="/products/brake">Details &#8594;</a></div>
+                <div class="ds">Active brake chopper for handling regenerative energy during deceleration.<span class="go soon">Details coming soon</span></div>
               </div>
               <span class="pip" aria-hidden="true"></span>
             </div>
@@ -936,7 +968,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
               <img class="thumb" src="assets/img/9d9bba2084.webp" alt="Motherboard" loading="lazy" decoding="async">
               <div>
                 <div class="nm">Motherboard</div><div class="kd">Configurable backplane</div>
-                <div class="ds">Carries and interconnects <span class="co"><i>co:</i>system</span> power submodules. Customizable for your system topology.<a class="go" href="/products/motherboard">Details &#8594;</a></div>
+                <div class="ds">Carries and interconnects <span class="co"><i>co:</i>system</span> power submodules. Customizable for your system topology.<span class="go soon">Details coming soon</span></div>
               </div>
               <span class="pip" aria-hidden="true"></span>
             </div>
@@ -962,7 +994,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <span class="lbl"><span class="co"><i>co:</i>battery</span></span>
       <h2>Robot-ready battery packs.</h2>
       <p class="lead">Fully integrated batteries for your next robot. Bus-native telemetry, onboard protection, and mechanical integration that matches the rest of <span class="co"><i>co:</i>system</span>.</p>
-      <a class="detail" href="/products/battery">Details &#8594;</a>
+      <span class="detail soon">Details coming soon</span>
     </div>
     <div class="p-split">
       <div class="p-viz frame">
@@ -992,7 +1024,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <span class="lbl"><span class="co"><i>co:</i>motion</span></span>
       <h2>Motion controllers.</h2>
       <p class="lead">Real-time EtherCAT motion controllers for high-performance joint control. Deterministic loops, rich feedback, and safety where it matters.</p>
-      <a class="detail" href="/products/motion">Details &#8594;</a>
+      <span class="detail soon">Details coming soon</span>
     </div>
     <div class="p-split">
       <div class="p-viz frame">
@@ -1022,7 +1054,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <span class="lbl"><span class="co"><i>co:</i>sensor</span></span>
       <h2>Sensing, synchronized.</h2>
       <p class="lead"><span class="co"><i>co:</i>sense</span> starts with a compact EtherCAT AHRS. Dual-redundant sensing, on-board fusion, and outputs your stack can trust at loop rate. More sensor modalities on the way.</p>
-      <a class="detail" href="/products/sensor">Details &#8594;</a>
+      <span class="detail soon">Details coming soon</span>
     </div>
     <div class="p-split">
       <div class="p-viz frame">
@@ -1212,7 +1244,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
           <a href="https://github.com/coprod-llc">GitHub</a>
           <a href="https://youtube.com/@coprod-LLC">YouTube</a>
           <a href="https://www.linkedin.com/company/coprod-llc">LinkedIn</a>
-          <a href="https://x.com/coprod_LLC">X</a>
+          <a href="https://x.com/coprod_Inc">X</a>
           <a href="https://instagram.com/coprod_llc">Instagram</a>
         </div>
       </div>
@@ -1236,7 +1268,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <div class="fcol">
         <h4>Company</h4>
         <ul>
-          <li><a href="jobs.html">Jobs</a></li>
+          <li><a href="jobs.html">Careers</a></li>
           <li><a href="values.html">Values</a></li>
           <li><a href="mailto:contact@coprod.ch">Contact</a></li>
         </ul>

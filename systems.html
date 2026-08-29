@@ -645,6 +645,11 @@ svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
   .cta-band{background:var(--panel)}
 }
 
+
+/* The logo mark hangs below the wordmark, so its visual mass sits low and the
+   nav labels read as floating high next to it. Nudge them down to match. */
+@media (min-width:941px){ nav.links a{position:relative; top:2px} }
+
 </style>
 </head>
 <body>
@@ -727,11 +732,9 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <a href="products.html">Products</a>
       <a href="systems.html" class="cur">Systems</a>
       <a href="index.html#architecture">Architecture</a>
-      <a href="jobs.html">Jobs</a>
-      <a class="hiring-m" href="jobs.html"><span class="pulse"></span>We're hiring</a>
+      <a href="jobs.html">Careers</a>
     </nav>
     <span class="spacer"></span>
-    <a class="hiring" href="jobs.html"><span class="pulse"></span>We're hiring</a>
   <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><i aria-hidden="true"></i></button>
   </div>
   <div id="rail"><span></span></div>
@@ -946,7 +949,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
           <a href="https://github.com/coprod-llc">GitHub</a>
           <a href="https://youtube.com/@coprod-LLC">YouTube</a>
           <a href="https://www.linkedin.com/company/coprod-llc">LinkedIn</a>
-          <a href="https://x.com/coprod_LLC">X</a>
+          <a href="https://x.com/coprod_Inc">X</a>
           <a href="https://instagram.com/coprod_llc">Instagram</a>
         </div>
       </div>
@@ -970,7 +973,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <div class="fcol">
         <h4>Company</h4>
         <ul>
-          <li><a href="jobs.html">Jobs</a></li>
+          <li><a href="jobs.html">Careers</a></li>
           <li><a href="values.html">Values</a></li>
           <li><a href="mailto:contact@coprod.ch">Contact</a></li>
         </ul>
