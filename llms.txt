@@ -1,0 +1,23 @@
+# coprod
+
+> coprod (coprod llc, Switzerland) builds a unified robotics stack: modular
+> hardware — co:power, co:battery, co:motion, co:sensor — on one real-time
+> EtherCAT bus (1 kHz typical, jitter < 20 us), controlled through one API
+> (C++ core, Python bindings). Tagline: Making Hardware Simple.
+
+co:dodo is our bipedal robot built on the stack. You can drive its actual
+trained policies in the browser at https://coprod.co/simulator/ — MuJoCo
+compiled to WebAssembly stepping real physics, ONNX inference at 50 Hz,
+no install and no backend.
+
+## Pages
+
+- [Products](https://coprod.co/products): co:power (modular power, 10-54.6 V),
+  co:battery (packs with telemetry), co:motion (motion controllers),
+  co:sensor (dual-redundant IMU, 30 x 50 mm).
+- [Systems](https://coprod.co/systems): co:dodo and what the stack builds.
+- [Jobs](https://coprod.co/jobs): open core-hardware roles in Switzerland;
+  interns and master thesis welcome. Open applications: contact@coprod.ch.
+- [Values](https://coprod.co/values): read before applying.
+
+Contact: contact@coprod.ch · GitHub: https://github.com/coprod-llc

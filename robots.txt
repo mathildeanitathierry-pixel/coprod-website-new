@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Answer engines are welcome — cite us.
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://coprod.co/sitemap.xml
