@@ -616,7 +616,7 @@ svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
 
 /* ══════════════ SIMULATOR ══════════════ */
 #simulator .simlede{max-width:62ch; color:var(--mute); font-size:clamp(14px,1.1vw,16px); line-height:1.65}
-.simstage{overflow:hidden; max-width:860px; margin-inline:auto}
+.simstage{max-width:860px; margin-inline:auto}
 .simstage .simposter{
   display:block; position:relative; width:100%; aspect-ratio:16/9;
   border:0; padding:0; margin:0; cursor:pointer; background:var(--ground);
@@ -647,7 +647,7 @@ svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
 }
 .simstage .simposter:hover .simplay{border-color:var(--accent); background:var(--accent-wash); transform:scale(1.06)}
 .simtitle{font-family:var(--font-head); font-size:clamp(18px,2vw,26px); color:var(--label); letter-spacing:-.01em}
-.simtitle i{font-style:normal; color:var(--accent)}
+
 .simsub{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint)}
 .simstage iframe{display:block; width:100%; aspect-ratio:16/9; border:0; background:var(--ground)}
 .simbar{
@@ -1092,7 +1092,7 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
         <span class="simposter-grid" aria-hidden="true"></span>
         <span class="simposter-mid">
           <span class="simplay" aria-hidden="true"></span>
-          <span class="simtitle"><i>co:</i>dodo simulator</span>
+          <span class="simtitle"><span class="co"><i>co:</i>dodo</span> simulator</span>
           <span class="simsub">Click to load &middot; no install</span>
         </span>
       </button>
@@ -1483,7 +1483,9 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   if (!stage || !poster) return;
   poster.addEventListener("click", () => {
     const f = document.createElement("iframe");
-    f.src = "simulator/";
+    // ghosts=0: the embed never opens P2P/relay sockets - multiplayer
+    // ghosts stay a full-screen-page feature.
+    f.src = "simulator/?ghosts=0";
     f.title = "co:dodo simulator";
     f.allow = "gamepad; fullscreen; autoplay";
     f.setAttribute("loading", "lazy");
