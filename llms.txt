@@ -19,6 +19,8 @@ no install and no backend.
 - [Jobs](https://coprod.co/jobs): open core-hardware roles in Switzerland;
   interns and master thesis welcome. Open applications: contact@coprod.ch.
 - [Values](https://coprod.co/values): read before applying.
+- [Blog](https://coprod.co/blog/): engineering write-ups and research notes
+  (how the browser simulator works, the EtherCAT architecture).
 - [Community](https://coprod.co/community): the co:builders Discord, the
   ambassador programme for campuses and labs, and our channels.
 

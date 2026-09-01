@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+<title>coprod blog</title>
+<link>https://coprod.co/blog/</link>
+<description>Engineering write-ups and research notes from the coprod bench.</description>
+<language>en</language>
+<item>
+<title>Real physics, no backend.</title>
+<link>https://coprod.co/blog/browser-simulator</link>
+<guid>https://coprod.co/blog/browser-simulator</guid>
+<pubDate>Tue, 01 Sep 2026 12:00:00 GMT</pubDate>
+<description>How the co:dodo simulator runs the robot's trained policies in your browser: MuJoCo WebAssembly at 200 Hz, ONNX inference at 50 Hz, fully self-hosted.</description>
+</item>
+<item>
+<title>One bus, one clock.</title>
+<link>https://coprod.co/blog/one-bus-one-clock</link>
+<guid>https://coprod.co/blog/one-bus-one-clock</guid>
+<pubDate>Tue, 01 Sep 2026 12:00:00 GMT</pubDate>
+<description>Why co:system puts power, motion and sensing on one real-time EtherCAT bus with distributed clocks.</description>
+</item>
+</channel></rss>
