@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>coprod - Products</title>
-<meta name="description" content="co:power, co:battery, co:motion and co:sensor — modular hardware designed to snap together into a complete robot, or to drop into yours.">
-<link rel="canonical" href="https://coprod.co/products">
+<title>coprod - Community</title>
+<meta name="description" content="Join the coprod builders community: the co:builders Discord, the ambassador programme for campuses and labs, and the channels where the stack is built in the open.">
+<link rel="canonical" href="https://coprod.co/community">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="coprod">
-<meta property="og:title" content="coprod - Products">
-<meta property="og:description" content="co:power, co:battery, co:motion and co:sensor — modular hardware designed to snap together into a complete robot, or to drop into yours.">
-<meta property="og:url" content="https://coprod.co/products">
+<meta property="og:title" content="coprod - Community">
+<meta property="og:description" content="Join the coprod builders community: Discord, the ambassador programme, and the channels where the stack is built in the open.">
+<meta property="og:url" content="https://coprod.co/community">
 <meta property="og:image" content="https://coprod.co/assets/img/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="coprod - Products">
-<meta name="twitter:description" content="co:power, co:battery, co:motion and co:sensor — modular hardware designed to snap together into a complete robot, or to drop into yours.">
+<meta name="twitter:title" content="coprod - Community">
+<meta name="twitter:description" content="Join the coprod builders community: Discord, the ambassador programme, and the channels where the stack is built in the open.">
 <meta name="twitter:image" content="https://coprod.co/assets/img/og-card.png">
 
 <style>
@@ -135,7 +135,7 @@ nav.links a{
   font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--mute);
   border-right:1px solid var(--rule); transition:color .16s, background .16s;
 }
-nav.links a:hover,nav.links a.on{color:var(--ink); background:var(--accent-wash)}
+nav.links a:hover,nav.links a.on,nav.links a.cur{color:var(--ink); background:var(--accent-wash)}
 .nav .spacer{flex:1; border-right:1px solid var(--rule)}
 .hiring{
   display:inline-flex; align-items:center; gap:8px; padding:0 20px;
@@ -560,6 +560,23 @@ ol.mod-list .go{display:block; margin-top:8px}
 @media (max-width:640px){ ol.mod-list .row{grid-template-columns:32px minmax(0,1fr) 7px} }
 
 
+/* ═══ VALUES PAGE ═════════════════════════════════════════ */
+.v-hero{padding-top:clamp(60px,7vw,110px); padding-bottom:clamp(20px,3vw,36px)}
+.v-hero .lead{max-width:60ch}
+.vgrid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px}
+@media (max-width:820px){ .vgrid{grid-template-columns:1fr} }
+.vcard{
+  padding:26px 24px; display:flex; flex-direction:column; gap:10px;
+  transition:border-color .2s, transform .2s;
+}
+.vcard:hover{border-color:var(--accent); transform:translateY(-3px)}
+.vcard .top{display:flex; align-items:baseline; gap:12px}
+.vcard .num{font-family:var(--font-mono); font-size:11px; font-weight:600; color:var(--accent)}
+.vcard .kd{font-family:var(--font-head); font-size:9px; letter-spacing:.2em; text-transform:uppercase; color:var(--faint)}
+.vcard h3{font-family:var(--font-head); font-size:19px; font-weight:600; color:var(--ink); letter-spacing:-.01em; margin:2px 0 0}
+.vcard p{font-size:13.5px; color:var(--mute); line-height:1.68; margin:0}
+
+
 /* ═══ BOTTOM CTA (every page) ═════════════════════════════ */
 .cta-band{
   position:relative; overflow:hidden;
@@ -608,72 +625,6 @@ ol.mod-list .go{display:block; margin-top:8px}
 .signup.sent .row,.signup.sent label,.signup.sent .fine{display:none}
 .signup.sent .done{display:block}
 @media (max-width:520px){ .signup button{width:100%} }
-
-
-/* product sections sized to sit within one screen */
-#copower, #cobattery, #comotion, #cosensor{padding:clamp(40px,4.6vw,68px) 0}
-#copower .head, #cobattery .head, #comotion .head, #cosensor .head{
-  gap:12px; margin-bottom:clamp(20px,2.4vw,30px);
-}
-#copower h2, #cobattery h2, #comotion h2, #cosensor h2{font-size:clamp(28px,3.4vw,44px)}
-#copower .lead, #cobattery .lead, #comotion .lead, #cosensor .lead{font-size:14.5px}
-.spec{padding:22px}
-.spec .board{min-height:min(300px,32vh); margin:0}
-.spec .board img{width:auto; max-width:100%; max-height:min(300px,32vh); margin:6px 0}
-.mods{padding:22px}
-.mods > p{margin-bottom:16px !important}
-ol.mod-list .row{padding:13px 4px}
-ol.mod-list .thumb{width:60px}
-ol.mod-list .row{grid-template-columns:34px 60px minmax(0,1fr) auto}
-.p-viz{min-height:auto; padding:clamp(18px,2vw,30px)}
-.p-viz img{max-width:min(100%,460px); max-height:min(330px,36vh)}
-.tri .pillar{padding:20px}
-.tri .pillar h3{font-size:17px}
-#copower .tri{margin-top:14px !important}
-@media (max-width:900px){
-  .spec .board, .spec .board img{max-height:none; min-height:auto}
-  .p-viz img{max-height:none}
-}
-
-/* closing question on the products page */
-.ask{
-  border-top:1px solid var(--rule); border-bottom:1px solid var(--rule);
-  padding:clamp(30px,3.6vw,48px) 0;
-}
-.ask .inner{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px}
-.ask h3{font-size:clamp(19px,2.2vw,26px); font-weight:600; letter-spacing:-.01em}
-
-
-/* tighter still: each product reads without scrolling */
-#copower, #cobattery, #comotion, #cosensor{padding:clamp(32px,3.6vw,52px) 0}
-#copower .head, #cobattery .head, #comotion .head, #cosensor .head{
-  gap:10px; margin-bottom:clamp(16px,2vw,24px);
-}
-#copower h2, #cobattery h2, #comotion h2, #cosensor h2{font-size:clamp(26px,3vw,38px)}
-.spec .board{min-height:min(260px,28vh)}
-.spec .board img{max-height:min(260px,28vh)}
-.p-viz img{max-height:min(280px,30vh)}
-ol.mod-list .row{padding:11px 4px; grid-template-columns:34px 54px minmax(0,1fr) auto}
-ol.mod-list .thumb{width:54px}
-.tri .pillar{padding:16px 18px}
-#copower .tri{margin-top:12px !important}
-@media (max-width:900px){
-  .spec .board, .spec .board img, .p-viz img{max-height:none; min-height:auto}
-  ol.mod-list .row{grid-template-columns:32px minmax(0,1fr) 7px}
-}
-
-
-/* co:power carries an extra row of pillars: squeeze it a little more */
-#copower{padding:clamp(26px,3vw,42px) 0}
-#copower .spec .board{min-height:min(236px,26vh)}
-#copower .spec .board img{max-height:min(236px,26vh)}
-#copower ol.mod-list .row{padding:10px 4px}
-#copower .mods, #copower .spec{padding:20px}
-#copower .tri .pillar{padding:14px 18px}
-#copower .tri .pillar p{font-size:12.5px !important}
-@media (max-width:900px){
-  #copower .spec .board, #copower .spec .board img{max-height:none; min-height:auto}
-}
 
 
 /* nav pills: the .hiring pill is the site's own blinking element; .demo
@@ -763,48 +714,9 @@ nav.links .pulse{display:inline-block; width:6px; height:6px; background:var(--a
 }
 
 
-/* hero anchors carry the module they jump to */
-.anchor-nav{gap:12px}
-.anchor-nav a{
-  display:flex; align-items:center; gap:11px; padding:9px 15px 9px 9px;
-}
-.anchor-nav a.noimg{padding:9px 16px}
-.anchor-nav .th{
-  width:40px; height:40px; flex:none; display:grid; place-items:center;
-  background:var(--panel); border:1px solid var(--rule); overflow:hidden;
-}
-.anchor-nav .th img{
-  max-width:34px; max-height:34px; width:auto; height:auto; display:block;
-  transition:transform .2s ease;
-}
-.anchor-nav a:hover .th{border-color:var(--accent)}
-.anchor-nav a:hover .th img{transform:scale(1.08)}
-@media (max-width:560px){
-  .anchor-nav{gap:8px}
-  .anchor-nav a{padding:7px 12px 7px 7px; gap:9px}
-  .anchor-nav .th{width:32px; height:32px}
-  .anchor-nav .th img{max-width:27px; max-height:27px}
-}
-
-
-/* pages for the individual modules do not exist yet: say so instead of 404ing */
-.go.soon, .detail.soon{color:var(--faint); cursor:default; text-decoration:none}
-.detail.soon:hover{text-decoration:none}
-
-
 /* The logo mark hangs below the wordmark, so its visual mass sits low and the
    nav labels read as floating high next to it. Nudge them down to match. */
 @media (min-width:941px){ nav.links a{position:relative; top:2px} }
-
-
-/* ═══ PRE-ORDER ═══════════════════════════════════════════ */
-.buyrow{display:flex; justify-content:center}
-.p-viz .buyrow{margin-top:20px}
-.spec .buyrow{margin-top:2px}
-#comotion .buyrow{margin-bottom:22px}
-@media (max-width:600px){ .buyrow .btn{width:100%; justify-content:center} }
-/* KILL SWITCH: uncomment to hide every pre-order button site-wide. */
-/* .buyrow{display:none !important} */
 
 </style>
 </head>
@@ -885,10 +797,10 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 33 48 48 l21 27 3 232 3 232 -19 35 -19 35 -33 23 -33 22 -245 0 -245 0 -43
 -44z"/></g></svg></a>
     <nav class="links" id="navlinks">
-      <a href="products.html" class="cur">Products</a>
+      <a href="products.html">Products</a>
       <a href="systems.html">Systems</a>
       <a href="jobs.html">Careers</a>
-      <a href="community.html">Community</a>
+      <a href="community.html" class="cur">Community</a>
       <a class="m-only" href="index.html#simulator">Play <span class="co"><i>co:</i>dodo</span> <span class="pulse" aria-hidden="true"></span></a>
       <a class="m-only" href="jobs.html">We&#8217;re hiring <span class="pulse" aria-hidden="true"></span></a>
     </nav>
@@ -900,163 +812,44 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   <div id="rail"><span></span></div>
 </header>
 
-
-<!-- ══════════════ PRODUCTS HERO ══════════════ -->
-<section class="p-hero">
+<!-- ══════════════ VALUES HERO ══════════════ -->
+<section class="v-hero">
   <div class="wrap">
     <div class="head">
-      <span class="lbl">products · the modular stack</span>
-      <h1 class="p-title">Hardware that composes.</h1>
-      <p class="lead">Every coprod module speaks EtherCAT and shares the same control API. Power, batteries, motion and sensing. Designed to snap together into a complete robot, or to drop into yours.</p>
-      <nav class="anchor-nav" aria-label="products">
-        <a href="#copower"><span class="th"><img src="assets/img/effaf5fba3.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>power</span></a>
-        <a href="#cobattery"><span class="th"><img src="assets/img/7e388e4667.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>battery</span></a>
-        <a href="#comotion"><span class="th"><img src="assets/img/b5bac88281.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>motion</span></a>
-        <a href="#cosensor"><span class="th"><img src="assets/img/ea4ac10d96.webp" alt="" loading="lazy" decoding="async"></span><span class="co"><i>co:</i>sensor</span></a>
-        <a class="noimg" href="#future">Roadmap</a>
-      </nav>
-    </div>
-
-    <div class="act-stage" data-rise>
-      <div class="actuator" id="actuator" tabindex="0" role="img" aria-label="co:motion controller board"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ CO:POWER ══════════════ -->
-<section id="copower">
-  <div class="wrap">
-    <div class="head">
-      <span class="snum">01</span>
-      <span class="lbl"><span class="co"><i>co:</i>power</span></span>
-      <h2>A modular power system.</h2>
-      <p class="lead">Precharge, regulate, dump and supervise. On a motherboard you configure. Pay only for the topology you need.</p>
-    </div>
-    <div class="feature">
-      <div class="spec frame" id="powerviz">
-        <div class="caps">
-          <span class="lbl mono-mute"><span class="co"><i>co:</i>power</span></span>
-          <span class="lbl mono-mute" id="pv-name">Power Logic</span>
-        </div>
-        <div class="board" id="pv-board">
-          <img id="pv-img" src="assets/img/20f4fdc58e.webp" alt="Power Logic">
-        </div>
-        <div class="tags">
-          <span class="chip acc" id="pv-c1">10-54.6V &middot; EtherCAT 1kHz+</span>
-          <span class="chip" id="pv-c2">Control of up to 6 modules</span>
-        </div>
-        <div class="buyrow">
-          <a class="btn" href="https://shop.coprod.co/cart/65744598040925:1" rel="nofollow">Pre-order <span class="arw">&rarr;</span></a>
-        </div>
-      </div>
-      <div class="mods frame">
-        <span class="lbl mono-mute" style="display:block;margin-bottom:14px">submodules</span>
-        <p style="margin-bottom:22px;max-width:56ch">Compose only what your robot needs. Submodules interlock on a motherboard that you can configure, or order fully custom.</p>
-        <ol class="mod-list" id="modlist">
-          <li class="on" data-mod="01"
-              data-name="Power Logic" data-img="assets/img/20f4fdc58e.webp"
-              data-c1="10-54.6V &middot; EtherCAT 1kHz+" data-c2="Control of up to 6 modules">
-            <div class="row" role="button" tabindex="0" aria-label="Show Power Logic">
-              <span class="num">01</span>
-              <img class="thumb" src="assets/img/20f4fdc58e.webp" alt="Power Logic" loading="lazy" decoding="async">
-              <div>
-                <div class="nm">Power Logic</div><div class="kd">Supervisor &amp; safety</div>
-                <div class="ds">Top-level power supervisor: monitoring, fault detection, e-stop and bus-off handling.<span class="go soon">Details coming soon</span></div>
-              </div>
-              <span class="pip" aria-hidden="true"></span>
-            </div>
-          </li>
-          <li data-mod="02"
-              data-name="Precharge" data-img="assets/img/cedb459bc4.webp"
-              data-c1="10-54.6 V &middot; 80 A peak / 50 A cont." data-c2="Max. output capacitance: 10mF">
-            <div class="row" role="button" tabindex="0" aria-label="Show Precharge">
-              <span class="num">02</span>
-              <img class="thumb" src="assets/img/cedb459bc4.webp" alt="Precharge" loading="lazy" decoding="async">
-              <div>
-                <div class="nm">Precharge</div><div class="kd">Bus inrush control</div>
-                <div class="ds">Controlled soft-start to charge downstream capacitors.<span class="go soon">Details coming soon</span></div>
-              </div>
-              <span class="pip" aria-hidden="true"></span>
-            </div>
-          </li>
-          <li data-mod="03"
-              data-name="Regulator" data-img="assets/img/37bedb8f9c.webp"
-              data-c1="18-54.6 V in &middot; 3 kV isolation" data-c2="24/15/12/5/3.3 V rails">
-            <div class="row" role="button" tabindex="0" aria-label="Show Regulator">
-              <span class="num">03</span>
-              <img class="thumb" src="assets/img/37bedb8f9c.webp" alt="Regulator" loading="lazy" decoding="async">
-              <div>
-                <div class="nm">Regulator</div><div class="kd">Voltage regulation &amp; isolation</div>
-                <div class="ds">Wide-input galvanically isolated DC/DC converter with extensive protection and telemetry.<span class="go soon">Details coming soon</span></div>
-              </div>
-              <span class="pip" aria-hidden="true"></span>
-            </div>
-          </li>
-          <li data-mod="04"
-              data-name="Brake" data-img=""
-              data-c1="10-54.6 V &middot; 500 W peak" data-c2="Parallelizable for load sharing">
-            <div class="row" role="button" tabindex="0" aria-label="Show Brake">
-              <span class="num">04</span>
-              <span class="thumb"></span>
-              <div>
-                <div class="nm">Brake</div><div class="kd">Regen clamp</div>
-                <div class="ds">Active brake chopper for handling regenerative energy during deceleration.<span class="go soon">Details coming soon</span></div>
-              </div>
-              <span class="pip" aria-hidden="true"></span>
-            </div>
-          </li>
-          <li data-mod="05"
-              data-name="Motherboard" data-img="assets/img/9d9bba2084.webp"
-              data-c1="Ready-to-buy motherboards" data-c2="Custom designs on request">
-            <div class="row" role="button" tabindex="0" aria-label="Show Motherboard">
-              <span class="num">05</span>
-              <img class="thumb" src="assets/img/9d9bba2084.webp" alt="Motherboard" loading="lazy" decoding="async">
-              <div>
-                <div class="nm">Motherboard</div><div class="kd">Configurable backplane</div>
-                <div class="ds">Carries and interconnects <span class="co"><i>co:</i>system</span> power submodules. Customizable for your system topology.<span class="go soon">Details coming soon</span></div>
-              </div>
-              <span class="pip" aria-hidden="true"></span>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-    <div class="tri" style="margin-top:20px">
-      <div class="pillar frame"><h3>Composable</h3><p style="font-size:13px">Five submodules. Stack only what the robot needs.</p></div>
-      <div class="pillar frame"><h3>Native on the bus</h3><p style="font-size:13px">Every submodule reports telemetry over EtherCAT. Same clock as motion and sensing.</p></div>
-      <div class="pillar frame"><h3>Custom motherboards</h3><p style="font-size:13px">Custom mechanical and electrical variants for your platform, on request.</p></div>
+      <span class="lbl">community</span>
+      <h1 class="p-title">Be part of the <span class="hl">builders.</span></h1>
+      <p class="lead" style="margin-top:18px">coprod is built in the open, with the people who will build on it. Students, researchers, club teams, startups — if you make things move in the world of atoms, there is a place for you here.</p>
     </div>
   </div>
 </section>
 
 <hr class="rule">
 
-<!-- ══════════════ CO:BATTERY ══════════════ -->
-<section id="cobattery">
+<!-- ══════════════ WAYS IN ══════════════ -->
+<section id="ways-in">
   <div class="wrap">
     <div class="head">
-      <span class="snum">02</span>
-      <span class="lbl"><span class="co"><i>co:</i>battery</span></span>
-      <h2>Robot-ready battery packs.</h2>
-      <p class="lead">Fully integrated batteries for your next robot. Bus-native telemetry, onboard protection, and mechanical integration that matches the rest of <span class="co"><i>co:</i>system</span>.</p>
-      <span class="detail soon">Details coming soon</span>
+      <span class="lbl">01 · three ways in</span>
+      <h2>Pick your <span class="hl">lane.</span></h2>
     </div>
-    <div class="p-split">
-      <div class="p-viz frame">
-        <span class="badge"><span class="co"><i>co:</i>battery</span></span>
-        <span class="badge2">EtherCAT · DC sync</span>
-        <img src="assets/img/7e388e4667.webp" alt="co:battery pack">
-        <div class="buyrow">
-          <a class="btn" href="https://shop.coprod.co/cart/65744598171997:1" rel="nofollow">Pre-order <span class="arw">&rarr;</span></a>
-        </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px">
+      <div class="frame" style="padding:clamp(24px,3vw,36px); display:flex; flex-direction:column; gap:14px">
+        <span class="lbl">for everyone</span>
+        <h3><span class="co"><i>co:</i>builder</span></h3>
+        <p style="color:var(--mute); line-height:1.7">The everyday community: build logs, help, hardware talk, early looks at what we ship. Lives on Discord — opening with a hand-picked first cohort now.</p>
+        <a class="btn ghost" style="align-self:flex-start; margin-top:auto" href="mailto:contact@coprod.ch?subject=Discord%20early%20invite">Ask for an early invite <span class="arw">&#8594;</span></a>
       </div>
-      <div class="tri tri-col">
-        <div class="pillar frame"><h3>Real-time link</h3><p style="font-size:13px">1 kHz+ EtherCAT communication with distributed clocks.</p></div>
-        <div class="pillar frame"><h3>Pack telemetry</h3><p style="font-size:13px">Advanced monitoring: voltage, current, power, state-of-charge, state-of-health, and per-cell voltages.</p></div>
-        <div class="pillar frame"><h3>State of charge</h3><p style="font-size:13px">Four illuminated state-of-charge indicators.</p></div>
-        <div class="pillar frame"><h3>Protection</h3><p style="font-size:13px">Over-current, over/under-voltage, short-circuit, and temperature protection.</p></div>
-        <div class="pillar frame"><h3>Integration</h3><p style="font-size:13px">Latching interface with open-source integration examples.</p></div>
-        <div class="pillar frame"><h3>Product range</h3><p style="font-size:13px">Multiple sizes and voltages; custom designs on request.</p></div>
+      <div class="frame" style="padding:clamp(24px,3vw,36px); display:flex; flex-direction:column; gap:14px">
+        <span class="lbl">for representatives</span>
+        <h3><span class="co"><i>co:</i>ambassador</span></h3>
+        <p style="color:var(--mute); line-height:1.7">Carry the stack to your campus, lab or community: events, content, intros, feedback. Cohort 01 is forming — see the programme below.</p>
+        <a class="btn ghost" style="align-self:flex-start; margin-top:auto" href="#ambassadors">The programme <span class="arw">&#8594;</span></a>
+      </div>
+      <div class="frame" style="padding:clamp(24px,3vw,36px); display:flex; flex-direction:column; gap:14px">
+        <span class="lbl">for clubs &amp; teams</span>
+        <h3><span class="co"><i>co:</i>campus</span></h3>
+        <p style="color:var(--mute); line-height:1.7">Robotics clubs, Formula Student teams, university chapters. Build on the stack, get a direct line to the people who design it.</p>
+        <a class="btn ghost" style="align-self:flex-start; margin-top:auto" href="mailto:contact@coprod.ch?subject=co%3Acampus">Talk to us <span class="arw">&#8594;</span></a>
       </div>
     </div>
   </div>
@@ -1064,135 +857,62 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 
 <hr class="rule">
 
-<!-- ══════════════ CO:MOTION ══════════════ -->
-<section id="comotion">
+<!-- ══════════════ AMBASSADORS ══════════════ -->
+<section id="ambassadors">
   <div class="wrap">
     <div class="head">
-      <span class="snum">03</span>
-      <span class="lbl"><span class="co"><i>co:</i>motion</span></span>
-      <h2>Motion controllers.</h2>
-      <p class="lead">Real-time EtherCAT motion controllers for high-performance joint control. Deterministic loops, rich feedback, and safety where it matters.</p>
-      <span class="detail soon">Details coming soon</span>
+      <span class="lbl">02 · ambassador programme</span>
+      <h2>Carry it <span class="hl">further.</span></h2>
+      <p class="lead">Ambassadors are the people who carry <span class="co"><i>co:</i>system</span> to their campus, lab or community. Cohort 01 is forming now.</p>
     </div>
-    <div class="p-split">
-      <div class="p-viz frame">
-        <span class="badge"><span class="co"><i>co:</i>motion</span></span>
-        <span class="badge2">EtherCAT · DC sync</span>
-        <span class="soon-tag">Coming soon</span>
-        <img src="assets/img/b5bac88281.webp" alt="co:motion controller board">
-        <div class="buyrow">
-          <a class="btn" href="https://shop.coprod.co/cart/65744598204765:1" rel="nofollow">Pre-order <span class="arw">&rarr;</span></a>
-        </div>
-      </div>
-      <div class="tri tri-col">
-        <div class="pillar frame"><h3>Bus &amp; timing</h3><p style="font-size:13px">EtherCAT for 1 kHz+ real-time communication with distributed clocks.</p></div>
-        <div class="pillar frame"><h3>Mechanical fit</h3><p style="font-size:13px">Multiple sizes with hollow-shaft options for straightforward integration into robotic joints.</p></div>
-        <div class="pillar frame"><h3>Feedback interfaces</h3><p style="font-size:13px">BiSS, SSI, SPI, Hall, and incremental encoders, on- or off-axis configurations.</p></div>
-        <div class="pillar frame"><h3>Motion modes</h3><p style="font-size:13px">Simultaneous control of torque, velocity, and position.</p></div>
-        <div class="pillar frame"><h3>Safe Torque Off</h3><p style="font-size:13px">STO with brake control for safe stopping and holding.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-<!-- ══════════════ CO:SENSOR ══════════════ -->
-<section id="cosensor">
-  <div class="wrap">
-    <div class="head">
-      <span class="snum">04</span>
-      <span class="lbl"><span class="co"><i>co:</i>sensor</span></span>
-      <h2>Sensing, synchronized.</h2>
-      <p class="lead"><span class="co"><i>co:</i>sense</span> starts with a compact EtherCAT AHRS. Dual-redundant sensing, on-board fusion, and outputs your stack can trust at loop rate. More sensor modalities on the way.</p>
-      <span class="detail soon">Details coming soon</span>
-    </div>
-    <div class="p-split">
-      <div class="p-viz frame">
-        <span class="badge"><span class="co"><i>co:</i>sense</span> · imu</span>
-        <span class="badge2">ethercat native</span>
-        <img src="assets/img/ea4ac10d96.webp" alt="co:sense IMU">
-        <div class="buyrow">
-          <a class="btn" href="https://shop.coprod.co/cart/65744598434141:1" rel="nofollow">Pre-order <span class="arw">&rarr;</span></a>
-        </div>
-      </div>
-      <div>
-        <h3 style="margin-bottom:12px"><span class="co lead-in"><i>co:</i>sense</span>IMU / AHRS</h3>
-        <p style="max-width:56ch;margin-bottom:24px">Compact EtherCAT-enabled 9-axis AHRS for precise orientation estimation. Hardware time-stamped on the bus so fusion and control share one clock.</p>
-        <div class="tri tri-col">
-          <div class="pillar frame"><h3>Sensing core</h3><p style="font-size:13px">9-axis dual-redundant IMU.</p></div>
-          <div class="pillar frame"><h3>Real-time link</h3><p style="font-size:13px">EtherCAT for 1 kHz+ communication with distributed clocks.</p></div>
-          <div class="pillar frame"><h3>On-board fusion</h3><p style="font-size:13px">1 kHz state-of-the-art sensor fusion on the module.</p></div>
-          <div class="pillar frame"><h3>Outputs</h3><p style="font-size:13px">Quaternion, linear acceleration, angular velocity, and magnetic field.</p></div>
-          <div class="pillar frame"><h3>Footprint</h3><p style="font-size:13px">30 × 50 mm. Built to tuck into tight spaces.</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-
-
-
-<!-- ══════════════ ROADMAP ══════════════ -->
-<section id="future">
-  <div class="wrap">
-    <div class="head">
-      <span class="snum">05</span>
-      <span class="lbl">roadmap</span>
-      <h2>What comes next.</h2>
-      <p class="lead">We build what our own robots need. These are already in the pipeline.</p>
-    </div>
-    <div class="tri">
-      <div class="pillar frame"><span class="chip acc" style="align-self:flex-start">planned</span><h3>EtherCAT Junction</h3><p style="font-size:13px">Passive and active junctions for robust star/branch topologies.</p></div>
-      <div class="pillar frame"><span class="chip acc" style="align-self:flex-start">planned</span><h3>IO Board</h3><p style="font-size:13px">General digital / analog IO, fast sampled, time-stamped on the bus.</p></div>
-      <div class="pillar frame"><span class="chip acc" style="align-self:flex-start">planned</span><h3>Tactile Sensor</h3><p style="font-size:13px">High-bandwidth tactile array for contact-rich manipulation.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ SYSTEMS ══════════════ -->
-<section id="systems">
-  <div class="wrap">
-    <div class="head">
-      <span class="lbl">systems</span>
-      <h2><span class="co"><i>co:</i>dodo</span> built with <span class="co"><i>co:</i>system</span>.</h2>
-    </div>
-
-    <div class="sys frame">
-      <div class="viz">
-        <span class="badge">co:system · biped</span>
-        <span class="badge2">built on co:system</span>
-        <img class="dodo" src="assets/img/297793954d.webp" alt="Biped robot built with coprod" loading="lazy" decoding="async">
-      </div>
-      <div class="body">
-        <h3>Our bipedal robot built on <span class="co"><i>co:</i>system</span>.</h3>
-        <ul class="ticks solid">
-          <li>Fast development.</li>
-          <li>Deterministic whole-body control over EtherCAT.</li>
-          <li>Hardware iterated in-house.</li>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px">
+      <div class="frame" style="padding:clamp(24px,3vw,36px)">
+        <span class="lbl" style="display:block; margin-bottom:16px">what you do</span>
+        <ul style="color:var(--mute); line-height:1.9; padding-left:18px; margin:0">
+          <li>Run and host events where builders already are</li>
+          <li>Make content about what you build on the stack</li>
+          <li>Open doors: intros to clubs, labs and teams</li>
+          <li>Feed back what the community actually needs</li>
         </ul>
-        <a class="btn ghost" style="align-self:flex-start" href="systems.html">See systems <span class="arw">→</span></a>
+      </div>
+      <div class="frame" style="padding:clamp(24px,3vw,36px)">
+        <span class="lbl" style="display:block; margin-bottom:16px">what you get</span>
+        <ul style="color:var(--mute); line-height:1.9; padding-left:18px; margin:0">
+          <li>Early hardware access and a direct line to the team</li>
+          <li>Credit for what you make — we reshare and say your name</li>
+          <li>Swag, and a reference letter that means something</li>
+          <li>A cohort of people building the same future</li>
+        </ul>
       </div>
     </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:28px">
+      <a class="btn" href="mailto:contact@coprod.ch?subject=Ambassador%20Programme">Apply · ambassador programme</a>
+      <a class="btn ghost" href="values.html">Read our values first <span class="arw">&#8594;</span></a>
+    </div>
+    <p style="color:var(--faint); font-size:12px; margin-top:14px">Alignment is what makes a company ship — the values are the reason the programme exists.</p>
   </div>
 </section>
 
 <hr class="rule">
 
-<!-- ══════════════ CONTACT ══════════════ -->
-<section class="ask" aria-label="Contact">
-  <div class="wrap inner">
-    <h3>Need something else? Please <span class="hl">contact us.</span></h3>
-    <a class="btn" href="mailto:contact@coprod.ch">contact@coprod.ch</a>
+<!-- ══════════════ CHANNELS ══════════════ -->
+<section id="channels">
+  <div class="wrap">
+    <div class="head">
+      <span class="lbl">03 · where we are</span>
+      <h2>Build in the <span class="hl">open.</span></h2>
+    </div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap">
+      <a class="btn ghost" href="https://github.com/coprod-llc" target="_blank" rel="noopener">GitHub <span class="arw">&#8594;</span></a>
+      <a class="btn ghost" href="https://youtube.com/@coprod-LLC" target="_blank" rel="noopener">YouTube <span class="arw">&#8594;</span></a>
+      <a class="btn ghost" href="https://www.linkedin.com/company/coprod-llc" target="_blank" rel="noopener">LinkedIn <span class="arw">&#8594;</span></a>
+      <a class="btn ghost" href="https://x.com/coprod_LLC" target="_blank" rel="noopener">X <span class="arw">&#8594;</span></a>
+      <a class="btn ghost" href="https://instagram.com/coprod_llc" target="_blank" rel="noopener">Instagram <span class="arw">&#8594;</span></a>
+    </div>
+    <p style="color:var(--mute); line-height:1.7; max-width:56ch; margin-top:24px">Discord is where the daily building happens — it opens with a hand-picked first cohort. Want in before the doors open? <a href="mailto:contact@coprod.ch?subject=Discord%20early%20invite" style="color:var(--accent)">Write us</a>, tell us what you build.</p>
   </div>
 </section>
 
-
-<!-- ══════════════ FOOTER ══════════════ -->
-
-<!-- ══════════════ BOTTOM CTA ══════════════ -->
 <section class="cta-band" aria-label="Early adopters">
   <div class="wrap inner">
     <div class="say">
@@ -1513,7 +1233,6 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   setTimeout(bootOnce, 600);
 })();
 </script>
-<script src="assets/actuator-gl.js" defer></script>
 <script>
 (() => {
   const list = document.getElementById("modlist");

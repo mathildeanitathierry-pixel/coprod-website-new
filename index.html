@@ -550,6 +550,21 @@ svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
 @media (max-width:520px){ .signup button{width:100%} }
 
 
+/* nav pills: the .hiring pill is the site's own blinking element; .demo
+   reuses it for the simulator CTA. Blink honours reduced motion. */
+.hiring{border-left:1px solid var(--rule)}
+.hiring .co{font-size:1em}
+.hiring .co i{color:inherit}
+.hiring.demo{color:var(--ink); background:transparent}
+.hiring.demo:hover{color:var(--accent); background:var(--accent-wash)}
+.hiring.demo .pulse{background:var(--accent)}
+nav.links .m-only{display:none}
+nav.links .pulse{display:inline-block; width:6px; height:6px; background:var(--accent); margin-left:8px; animation:blink 1.9s steps(1) infinite}
+@media (prefers-reduced-motion: reduce){ .hiring .pulse, nav.links .pulse{animation:none} }
+@media (max-width:940px){
+  .hiring{display:none}
+  nav.links .m-only{display:block; color:var(--accent)}
+}
 /* ═══ MOBILE NAV ══════════════════════════════════════════ */
 .burger{display:none}
 .hiring-m{display:none}
@@ -794,8 +809,13 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
       <a href="products.html">Products</a>
       <a href="systems.html">Systems</a>
       <a href="jobs.html">Careers</a>
+      <a href="community.html">Community</a>
+      <a class="m-only" href="index.html#simulator">Play <span class="co"><i>co:</i>dodo</span> <span class="pulse" aria-hidden="true"></span></a>
+      <a class="m-only" href="jobs.html">We&#8217;re hiring <span class="pulse" aria-hidden="true"></span></a>
     </nav>
     <span class="spacer"></span>
+    <a class="hiring demo" href="index.html#simulator"><span class="pulse" aria-hidden="true"></span>Play <span class="co"><i>co:</i>dodo</span></a>
+    <a class="hiring" href="jobs.html"><span class="pulse" aria-hidden="true"></span>We&#8217;re hiring</a>
   <button class="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><i aria-hidden="true"></i></button>
   </div>
   <div id="rail"><span></span></div>

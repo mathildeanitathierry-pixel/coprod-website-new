@@ -19,5 +19,7 @@ no install and no backend.
 - [Jobs](https://coprod.co/jobs): open core-hardware roles in Switzerland;
   interns and master thesis welcome. Open applications: contact@coprod.ch.
 - [Values](https://coprod.co/values): read before applying.
+- [Community](https://coprod.co/community): the co:builders Discord, the
+  ambassador programme for campuses and labs, and our channels.
 
 Contact: contact@coprod.ch · GitHub: https://github.com/coprod-llc
