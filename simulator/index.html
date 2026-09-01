@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>co:dodo simulator</title>
+    <style>
+      /* coprod brand faces, self-hosted from public/fonts - the sim embeds
+         on coprod.co, which makes no external font requests. Paths are
+         relative so they resolve both at the dev root and under the
+         site's /simulator/ base. */
+      @font-face{font-family:"Space Grotesk";font-style:normal;font-weight:300 700;font-display:swap;src:url(./fonts/space-grotesk.woff2) format("woff2-variations")}
+      @font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url(./fonts/manrope.woff2) format("woff2-variations")}
+      @font-face{font-family:"Audiowide";font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/audiowide.woff2) format("woff2")}
+      @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url(./fonts/ibm-plex-mono-400.woff2) format("woff2")}
+      @font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;font-display:swap;src:url(./fonts/ibm-plex-mono-600.woff2) format("woff2")}
+
+      :root {
+        color-scheme: dark;
+        --ground: #0B0A0F;
+        --panel: #100E16;
+        --ink: #EFEDF5;
+        --mute: #9A94AA;
+        --faint: #6E6880;
+        --dot: #2A2733;
+        --hairline: #37333F;
+        --rule: #221F2B;
+        --accent: #A98BFF;
+        --accent-wash: rgba(169, 139, 255, .10);
+        --label: #F2F0F7;
+        --shadow: rgba(0, 0, 0, .4);
+        --font-logo: "Audiowide", "Space Grotesk", sans-serif;
+        --font-head: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+        --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+        --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { height: 100%; }
+      body { background: var(--ground); color: var(--ink); font-family: var(--font-body); overflow: hidden; }
+      ::selection { background: var(--accent); color: var(--ground); }
+      #root { height: 100%; }
+    </style>
+    <script type="module" crossorigin src="./bundle/index-D7ImRoIa.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

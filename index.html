@@ -613,6 +613,54 @@ svg text{font-family:"Space Grotesk",ui-sans-serif,system-ui,sans-serif}
    nav labels read as floating high next to it. Nudge them down to match. */
 @media (min-width:941px){ nav.links a{position:relative; top:2px} }
 
+
+/* ══════════════ SIMULATOR ══════════════ */
+#simulator .simlede{max-width:62ch; color:var(--mute); font-size:clamp(14px,1.1vw,16px); line-height:1.65}
+.simstage{max-width:860px; margin-inline:auto}
+.simstage .simposter{
+  display:block; position:relative; width:100%; aspect-ratio:16/9;
+  border:0; padding:0; margin:0; cursor:pointer; background:var(--ground);
+  font:inherit; color:inherit; overflow:hidden;
+}
+.simstage .simposter-grid{
+  position:absolute; inset:0;
+  background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);
+  background-size:44px 44px; opacity:.5;
+  mask-image:radial-gradient(120% 90% at 50% 55%,#000 25%,transparent 78%);
+  -webkit-mask-image:radial-gradient(120% 90% at 50% 55%,#000 25%,transparent 78%);
+  transition:opacity .4s ease;
+}
+.simstage .simposter:hover .simposter-grid{opacity:.8}
+.simstage .simposter-mid{
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:14px; text-align:center;
+}
+.simplay{
+  width:64px; height:64px; border:1px solid var(--hairline);
+  display:grid; place-items:center; background:var(--panel);
+  transition:border-color .25s ease, background .25s ease, transform .25s ease;
+}
+.simplay::after{
+  content:""; width:0; height:0; margin-left:4px;
+  border-left:14px solid var(--accent);
+  border-top:9px solid transparent; border-bottom:9px solid transparent;
+}
+.simstage .simposter:hover .simplay{border-color:var(--accent); background:var(--accent-wash); transform:scale(1.06)}
+.simtitle{font-family:var(--font-head); font-size:clamp(18px,2vw,26px); color:var(--label); letter-spacing:-.01em}
+
+.simsub{font-family:var(--font-mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint)}
+.simstage iframe{display:block; width:100%; aspect-ratio:16/9; border:0; background:var(--ground)}
+.simbar{
+  display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap;
+  padding:14px 18px; border-top:1px solid var(--hairline); background:var(--panel);
+}
+.simnote{font-family:var(--font-mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint)}
+.simbar .btn{padding:9px 16px; font-size:12px}
+@media (max-width:720px){
+  .simstage .simposter, .simstage iframe{aspect-ratio:4/3}
+  .simbar{padding:12px 14px}
+  .simnote{font-size:10px}
+}
 </style>
 </head>
 <body>
@@ -1030,6 +1078,36 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
 
 <hr class="rule">
 
+<!-- ══════════════ SIMULATOR ══════════════ -->
+<section id="simulator" aria-label="Simulator">
+  <div class="wrap">
+    <div class="head">
+      <span class="lbl">simulation</span>
+      <h2>Drive <span class="co"><i>co:</i>dodo</span> <span class="hl">in your browser.</span></h2>
+      <p class="simlede">The same trained policies that run on the real robot, stepping real physics in your tab. MuJoCo compiled to WebAssembly, ONNX inference at 50&nbsp;Hz. No install, no backend.</p>
+    </div>
+
+    <div class="simstage frame" id="simstage">
+      <button class="simposter" type="button" id="simlaunch" aria-label="Launch the co:dodo simulator">
+        <span class="simposter-grid" aria-hidden="true"></span>
+        <span class="simposter-mid">
+          <span class="simplay" aria-hidden="true"></span>
+          <span class="simtitle"><span class="co"><i>co:</i>dodo</span> simulator</span>
+          <span class="simsub">Click to load &middot; no install</span>
+        </span>
+      </button>
+      <!-- The control legend lives inside the simulator's own title
+           screen, so the bar carries only the escape hatch. -->
+      <div class="simbar">
+        <span class="simnote">runs entirely in this tab &middot; no backend</span>
+        <a class="btn ghost" href="simulator/" target="_blank" rel="noopener">Full screen <span class="arw">&#8594;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
 
 <!-- ══════════════ SHIP / EARLY ADOPTERS ══════════════ -->
 
@@ -1393,6 +1471,27 @@ l-30 -93 -45 -77 -45 -76 -57 -63 c-72 -77 -143 -130 -242 -179 l-76 -39 -75
   document.addEventListener("click", e => { if (!h.contains(e.target)) set(false); });
   addEventListener("keydown", e => { if (e.key === "Escape") set(false); });
   addEventListener("resize", () => { if (innerWidth > 940) set(false); });
+})();
+</script>
+<script>
+// Simulator: the bundle is ~21 MB of meshes and policies plus a MuJoCo WASM
+// boot, so the iframe is only created on click - the poster keeps the landing
+// page light and stops it competing with the hero renderer.
+(() => {
+  const stage = document.getElementById("simstage");
+  const poster = document.getElementById("simlaunch");
+  if (!stage || !poster) return;
+  poster.addEventListener("click", () => {
+    const f = document.createElement("iframe");
+    // ghosts=0: the embed never opens P2P/relay sockets - multiplayer
+    // ghosts stay a full-screen-page feature.
+    f.src = "simulator/?ghosts=0";
+    f.title = "co:dodo simulator";
+    f.allow = "gamepad; fullscreen; autoplay";
+    f.setAttribute("loading", "lazy");
+    poster.replaceWith(f);
+    f.focus();
+  }, { once: true });
 })();
 </script>
 </body>
