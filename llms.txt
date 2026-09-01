@@ -22,4 +22,5 @@ no install and no backend.
 - [Community](https://coprod.co/community): the co:builders Discord, the
   ambassador programme for campuses and labs, and our channels.
 
+Discord: https://coprod.co/discord
 Contact: contact@coprod.ch · GitHub: https://github.com/coprod-llc

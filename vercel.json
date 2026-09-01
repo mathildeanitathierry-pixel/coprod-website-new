@@ -31,7 +31,8 @@
     { "source": "/simulator/(fonts|robot|policies|assets|runtime)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }] }
   ],
   "redirects": [
-    { "source": "/simulator", "destination": "/simulator/", "permanent": false }
+    { "source": "/simulator", "destination": "/simulator/", "permanent": false },
+    { "source": "/discord", "destination": "https://discord.gg/VCdWGvTAST", "permanent": false }
   ],
   "cleanUrls": true
 }
